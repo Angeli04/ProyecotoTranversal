@@ -78,5 +78,8 @@ public class Alumno {
         this.estado = estado;
     }
     
-    
+    @Override
+    public String toString(){
+         return "Nombre completo: "+this.getNombre()+" "+this.getApellido()+" DNI: "+this.getDni()+" F de Nac: "+this.getFechaNacimiento();
+    }
 }

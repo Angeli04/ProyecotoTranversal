@@ -28,16 +28,25 @@ public class Universidad {
         //frmPrincipal framePrincipal = new frmPrincipal();
         //framePrincipal.setLocationRelativeTo(null);
         //framePrincipal.setVisible(true);
-        
-        Alumno a = new Alumno("Lucero", "Ernesto", "27822891", LocalDate.parse("1980-12-30"), 1);
-        new Universidad().conectar(a);
+        new Universidad().conectar();
     }
     
-    private void conectar(Alumno a){
-        
+    private void conectar(){
         conn = new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
         alumnoData = new AlumnoData(conn);
+
+        Alumno a = new Alumno("Estrada", "Lorena", "27822893", LocalDate.parse("1980-12-30"), 1);
         alumnoData.guardarAlumno(a);
+        
+        Alumno b = alumnoData.obtenerAlumno(2);
+        System.out.println(b.toString());
+        
+        b.setApellido("Perez");
+        alumnoData.actualizarAlumno(b);
+        Alumno c = alumnoData.obtenerAlumno(2);
+        System.out.println(c.toString());
+        
+        
     }
     
     public List<Alumno> obtenerAlumnos(){

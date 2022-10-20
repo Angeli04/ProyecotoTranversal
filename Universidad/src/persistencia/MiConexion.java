@@ -31,7 +31,7 @@ public class MiConexion {
     public Connection buscarConexion(){
         if(conn == null){
             try{
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 conn = DriverManager.getConnection(url, usuario, pass);
             } catch(SQLException | ClassNotFoundException ex){
                 Logger.getLogger(MiConexion.class).log(Level.SEVERE, null, ex);

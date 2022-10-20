@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,12 +38,16 @@ public class AlumnoData {
             ps.setString(2, a.getNombre());
             ps.setString(3, a.getDni());
             ps.setDate(4, Date.valueOf(a.getFechaNacimiento()));
-            ps.executeUpdate();
+            if( ps.executeUpdate() > 0 ){
+                JOptionPane.showMessageDialog(null, "Alumno agregado exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El alumno no puso ser agregado.");
+            }
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
                 a.setIdAlumno(rs.getInt(1));
             } else {
-                System.out.println("No se puede obtener un ID");
+                JOptionPane.showMessageDialog(null, "No se pudo obtener el ID.");
             }
             ps.close();
             
@@ -51,22 +56,46 @@ public class AlumnoData {
         }
     }
     
-    public Alumno buscarAlumno(int id){
+    public Alumno obtenerAlumno(int id){
         Alumno a = null;
-        String q = "SELECT * FROM alumnos WHERE alumnos.idAlumno = ?";
-        
+
         try{
+            String q = "SELECT * FROM alumnos WHERE alumnos.idAlumno = ?";
             PreparedStatement ps = conn.prepareStatement(q);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 a = new Alumno();
-                rs.getString("apellido");
-                rs.getString("nombre");
-                rs.getDate("fechaNacimiento").toLocalDate();
-                rs.getInt("estado");
-                a.setIdAlumno(rs.getInt("id"));
-             
+                a.setApellido(rs.getString("apellido"));
+                a.setNombre(rs.getString("nombre"));
+                a.setDni(rs.getString("dni"));
+                a.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                a.setEstado(rs.getInt("estado"));
+                a.setIdAlumno(rs.getInt("idAlumno"));
+            }
+            ps.close();
+        } catch(SQLException ex) {
+            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+        }
+        return a;
+    }
+    
+    public Alumno obtenerAlumnoXDni(String dni){
+        Alumno a = null;
+
+        try{
+            String q = "SELECT * FROM alumnos WHERE alumnos.dni= ?";
+            PreparedStatement ps = conn.prepareStatement(q);
+            ps.setString(1, dni);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                a = new Alumno();
+                a.setApellido(rs.getString("apellido"));
+                a.setNombre(rs.getString("nombre"));
+                a.setDni(rs.getString("dni"));
+                a.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                a.setEstado(rs.getInt("estado"));
+                a.setIdAlumno(rs.getInt("idAlumno"));
             }
             ps.close();
         } catch(SQLException ex) {
@@ -85,10 +114,11 @@ public class AlumnoData {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 a = new Alumno();
-                rs.getString("apellido");
-                rs.getString("nombre");
-                rs.getDate("fechaNacimiento").toLocalDate();
-                rs.getInt("estado");
+                a.setApellido(rs.getString("apellido"));
+                a.setNombre(rs.getString("nombre"));
+                a.setDni(rs.getString("dni"));
+                a.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                a.setEstado(rs.getInt("estado"));
                 a.setIdAlumno(rs.getInt("id"));
                 alumnos.add(a);
             }
@@ -100,7 +130,7 @@ public class AlumnoData {
     }
     
     public void actualizarAlumno(Alumno a){
-        String q = "UPDATE SET apellido = ?, nombre = ?, dni = ?, fechaNacimiento = ? WHERE idAlumno = ?";
+        String q = "UPDATE alumnos SET apellido = ?, nombre = ?, dni = ?, fechaNacimiento = ? WHERE idAlumno = ?";
         
         try{
             PreparedStatement ps = conn.prepareStatement(q);

@@ -16,8 +16,7 @@ public class Inscripcion {
     private int idMateria;
     private float notaFinal; 
 
-    public Inscripcion(int idInscripcion, int idAlumno, int idMateria, float notaFinal) {
-        this.idInscripcion = idInscripcion;
+    public Inscripcion(int idAlumno, int idMateria, float notaFinal) {
         this.idAlumno = idAlumno;
         this.idMateria = idMateria;
         this.notaFinal = notaFinal;

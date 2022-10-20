@@ -16,8 +16,9 @@ public class Materia {
     private int periodo;
     private int estado; 
 
-    public Materia(int idMateria, String nombre, int periodo, int estado) {
-        this.idMateria = idMateria;
+    public Materia() {}
+
+    public Materia(String nombre, int periodo, int estado) {
         this.nombre = nombre;
         this.periodo = periodo;
         this.estado = estado;

@@ -19,7 +19,6 @@ public class friInscripciones extends javax.swing.JInternalFrame {
      */
     public friInscripciones() {
         initComponents();
-        llenarCombos();
     }
 
     /**
@@ -102,11 +101,11 @@ public class friInscripciones extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
         );
 
         pack();
@@ -115,15 +114,6 @@ public class friInscripciones extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void llenarCombos(){
-        for(Alumno alumno: Universidad.getAlumnos()){
-            cbAlumnos.addItem(alumno);
-        }
-        
-        for(Materia materia: Universidad.getMaterias()){
-            cbMaterias.addItem(materia);
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Alumno> cbAlumnos;
