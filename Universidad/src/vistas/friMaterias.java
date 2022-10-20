@@ -72,6 +72,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(173, 186, 199));
         jCheckBox1.setText("Activo");
+        jCheckBox1.setContentAreaFilled(false);
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 200, 30));
 
         jButton1.setBackground(new java.awt.Color(34, 39, 46));
@@ -93,7 +94,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
         jComboBox1.setBackground(new java.awt.Color(34, 39, 46));
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(173, 186, 199));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022", "2021", "2020", "2019", "2018" }));
         jComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 200, 30));
 

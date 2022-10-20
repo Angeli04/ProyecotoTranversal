@@ -6,7 +6,9 @@
 package universidad;
 
 import entidades.Alumno;
+import entidades.Materia;
 import java.time.LocalDate;
+import java.util.List;
 import persistencia.AlumnoData;
 import persistencia.MiConexion;
 import vistas.frmPrincipal;
@@ -36,6 +38,14 @@ public class Universidad {
         conn = new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
         alumnoData = new AlumnoData(conn);
         alumnoData.guardarAlumno(a);
+    }
+    
+    public List<Alumno> obtenerAlumnos(){
+        return null;
+    }
+    
+    public List<Materia> obtenerMaterias(){
+        return null;
     }
     
 }
