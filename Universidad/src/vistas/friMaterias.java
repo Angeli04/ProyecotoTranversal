@@ -40,6 +40,8 @@ public class friMaterias extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(34, 39, 46));
         jPanel1.setForeground(new java.awt.Color(173, 186, 199));
+        jPanel1.setMinimumSize(new java.awt.Dimension(600, 450));
+        jPanel1.setPreferredSize(new java.awt.Dimension(600, 450));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N

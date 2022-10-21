@@ -53,6 +53,7 @@ public class AlumnoData {
             
         } catch(SQLException ex) {
             Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en guardarAlumno.");
         }
     }
     
@@ -76,6 +77,7 @@ public class AlumnoData {
             ps.close();
         } catch(SQLException ex) {
             Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerAlumno.");
         }
         return a;
     }
@@ -100,6 +102,7 @@ public class AlumnoData {
             ps.close();
         } catch(SQLException ex) {
             Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerAlumnoXDni.");
         }
         return a;
     }
@@ -144,11 +147,13 @@ public class AlumnoData {
             
         } catch(SQLException ex) {
             Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en actualizarAlumno.");
         }
     }
     
     public void eliminarAlumno(int id){
-        String q = "DELETE FROM alumnos WHERE idAlumno = ?";
+        //String q = "DELETE FROM alumnos WHERE idAlumno = ?";
+        String q = "UPDATE alumnos SET estado = 0 WHERE idAlumno = ?";
         
         try{
             PreparedStatement ps = conn.prepareStatement(q);
@@ -158,6 +163,7 @@ public class AlumnoData {
             
         } catch(SQLException ex) {
             Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en eliminarAlumno.");
         }
     }
 }
