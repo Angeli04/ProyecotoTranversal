@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,12 +40,13 @@ public class MateriaData {
             if(rs.next()){
                 m.setIdMateria(rs.getInt(1));
             } else {
-                System.out.println("No se puede obtener un ID");
+                JOptionPane.showMessageDialog(null, "No se pudo obtener el ID.");
             }
             ps.close();
             
         } catch(SQLException ex) {
-            Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "No se pudo obtener el ID.");
         }
     }
     
@@ -65,7 +67,8 @@ public class MateriaData {
             }
             ps.close();
         } catch(SQLException ex) {
-            Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerMateria.");
         }
         return m;
     }
@@ -88,7 +91,8 @@ public class MateriaData {
             }
             ps.close();
         } catch(SQLException ex) {
-            Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en listarMaterias.");
         }
         return materias;
     }
@@ -105,7 +109,8 @@ public class MateriaData {
             ps.close();
             
         } catch(SQLException ex) {
-            Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en actualizarMateria.");
         }
     }
     
@@ -118,7 +123,8 @@ public class MateriaData {
             ps.executeUpdate();
             ps.close();
         } catch(SQLException ex) {
-            Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en eliminarMateria.");
         }
     }
 }

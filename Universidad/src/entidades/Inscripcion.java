@@ -16,6 +16,8 @@ public class Inscripcion {
     private Materia materia;
     private float notaFinal; 
 
+    public Inscripcion() { }
+    
     public Inscripcion(Alumno alumno, Materia materia, float notaFinal) {
         this.alumno = alumno;
         this.materia = materia;

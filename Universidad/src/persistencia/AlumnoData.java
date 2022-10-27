@@ -31,7 +31,6 @@ public class AlumnoData {
     
     public void guardarAlumno(Alumno a){
         String q = "INSERT INTO alumnos(apellido, nombre, dni, fechaNacimiento) VALUES (?,?,?,?)";
-        
         try{
             PreparedStatement ps = conn.prepareStatement(q, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, a.getApellido());
@@ -50,16 +49,14 @@ public class AlumnoData {
                 JOptionPane.showMessageDialog(null, "No se pudo obtener el ID.");
             }
             ps.close();
-            
         } catch(SQLException ex) {
-            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en guardarAlumno.");
         }
     }
     
     public Alumno obtenerAlumno(int id){
         Alumno a = null;
-
         try{
             String q = "SELECT * FROM alumnos WHERE alumnos.idAlumno = ?";
             PreparedStatement ps = conn.prepareStatement(q);
@@ -76,7 +73,7 @@ public class AlumnoData {
             }
             ps.close();
         } catch(SQLException ex) {
-            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerAlumno.");
         }
         return a;
@@ -84,7 +81,6 @@ public class AlumnoData {
     
     public Alumno obtenerAlumnoXDni(String dni){
         Alumno a = null;
-
         try{
             String q = "SELECT * FROM alumnos WHERE alumnos.dni= ?";
             PreparedStatement ps = conn.prepareStatement(q);
@@ -101,16 +97,16 @@ public class AlumnoData {
             }
             ps.close();
         } catch(SQLException ex) {
-            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerAlumnoXDni.");
         }
         return a;
     }
     
     public List<Alumno> listarAlumnos(){
-        Alumno a = null;
+        Alumno a;
         List<Alumno> alumnos = new ArrayList<>();
-        String q = "SELECT * FROM alumnos";
+        String q = "SELECT * FROM alumnos WHERE estado = 1";
         
         try{
             PreparedStatement ps = conn.prepareStatement(q);
@@ -127,13 +123,14 @@ public class AlumnoData {
             }
             ps.close();
         } catch(SQLException ex) {
-            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en listarAlumnos.");
         }
         return alumnos;
     }
     
     public void actualizarAlumno(Alumno a){
-        String q = "UPDATE alumnos SET apellido = ?, nombre = ?, dni = ?, fechaNacimiento = ? WHERE idAlumno = ?";
+        String q = "UPDATE alumnos SET apellido = ?, nombre = ?, dni = ?, fechaNacimiento = ? WHERE idAlumno = ? AND estado = 1";
         
         try{
             PreparedStatement ps = conn.prepareStatement(q);
@@ -146,7 +143,7 @@ public class AlumnoData {
             ps.close();
             
         } catch(SQLException ex) {
-            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en actualizarAlumno.");
         }
     }
@@ -154,15 +151,13 @@ public class AlumnoData {
     public void eliminarAlumno(int id){
         //String q = "DELETE FROM alumnos WHERE idAlumno = ?";
         String q = "UPDATE alumnos SET estado = 0 WHERE idAlumno = ?";
-        
         try{
             PreparedStatement ps = conn.prepareStatement(q);
             ps.setInt(1, id);
             ps.executeUpdate();
             ps.close();
-            
         } catch(SQLException ex) {
-            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en eliminarAlumno.");
         }
     }
