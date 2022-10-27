@@ -29,14 +29,20 @@ public class friMaterias extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jLNombre = new javax.swing.JLabel();
+        jLPeriodo = new javax.swing.JLabel();
+        jLIdMateria = new javax.swing.JLabel();
+        jTFIdMateria = new javax.swing.JTextField();
+        jCBEstado = new javax.swing.JCheckBox();
+        btLimpiar = new javax.swing.JButton();
+        btGuardar = new javax.swing.JButton();
+        jCmbBPeriodo = new javax.swing.JComboBox<>();
+        jLEstado = new javax.swing.JLabel();
+        jTFNombre = new javax.swing.JTextField();
+        btSalir = new javax.swing.JButton();
+        btBorrar = new javax.swing.JButton();
+        btActualizar = new javax.swing.JButton();
+        btBuscar = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(34, 39, 46));
         jPanel1.setForeground(new java.awt.Color(173, 186, 199));
@@ -47,64 +53,127 @@ public class friMaterias extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(173, 186, 199));
         jLabel1.setText("Formulario de materia");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(173, 186, 199));
-        jLabel2.setText("Nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 200, 30));
+        jLNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLNombre.setForeground(new java.awt.Color(173, 186, 199));
+        jLNombre.setText("Nombre");
+        jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 200, 30));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(173, 186, 199));
-        jLabel3.setText("Periodo");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 200, 30));
+        jLPeriodo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLPeriodo.setForeground(new java.awt.Color(173, 186, 199));
+        jLPeriodo.setText("Periodo");
+        jPanel1.add(jLPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(173, 186, 199));
-        jLabel4.setText("Estado");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 200, 30));
+        jLIdMateria.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLIdMateria.setForeground(new java.awt.Color(173, 186, 199));
+        jLIdMateria.setText("Id Materia");
+        jPanel1.add(jLIdMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 30));
 
-        jTextField1.setBackground(new java.awt.Color(34, 39, 46));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(173, 186, 199));
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
+        jTFIdMateria.setBackground(new java.awt.Color(34, 39, 46));
+        jTFIdMateria.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFIdMateria.setForeground(new java.awt.Color(173, 186, 199));
+        jTFIdMateria.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
+        jTFIdMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFIdMateriaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTFIdMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 100, 30));
 
-        jCheckBox1.setBackground(new java.awt.Color(34, 39, 46));
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(173, 186, 199));
-        jCheckBox1.setText("Activo");
-        jCheckBox1.setContentAreaFilled(false);
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 200, 30));
+        jCBEstado.setBackground(new java.awt.Color(34, 39, 46));
+        jCBEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCBEstado.setForeground(new java.awt.Color(173, 186, 199));
+        jCBEstado.setText("Activo");
+        jCBEstado.setContentAreaFilled(false);
+        jCBEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBEstadoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCBEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 200, 30));
 
-        jButton1.setBackground(new java.awt.Color(34, 39, 46));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(173, 186, 199));
-        jButton1.setText("Salir");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
-        jButton1.setContentAreaFilled(false);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 100, 30));
+        btLimpiar.setBackground(new java.awt.Color(34, 39, 46));
+        btLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btLimpiar.setForeground(new java.awt.Color(173, 186, 199));
+        btLimpiar.setText("Limpiar");
+        btLimpiar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btLimpiar.setContentAreaFilled(false);
+        jPanel1.add(btLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 100, 30));
 
-        jButton2.setBackground(new java.awt.Color(34, 39, 46));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(173, 186, 199));
-        jButton2.setText("Guardar");
-        jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
-        jButton2.setContentAreaFilled(false);
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 100, 30));
+        btGuardar.setBackground(new java.awt.Color(34, 39, 46));
+        btGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btGuardar.setForeground(new java.awt.Color(173, 186, 199));
+        btGuardar.setText("Guardar");
+        btGuardar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btGuardar.setContentAreaFilled(false);
+        jPanel1.add(btGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 100, 30));
 
-        jComboBox1.setBackground(new java.awt.Color(34, 39, 46));
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(173, 186, 199));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022", "2021", "2020", "2019", "2018" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 200, 30));
+        jCmbBPeriodo.setBackground(new java.awt.Color(34, 39, 46));
+        jCmbBPeriodo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jCmbBPeriodo.setForeground(new java.awt.Color(173, 186, 199));
+        jCmbBPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022", "2021", "2020", "2019", "2018" }));
+        jCmbBPeriodo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
+        jCmbBPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCmbBPeriodoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCmbBPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 200, 30));
+
+        jLEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLEstado.setForeground(new java.awt.Color(173, 186, 199));
+        jLEstado.setText("Estado");
+        jPanel1.add(jLEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 200, 30));
+
+        jTFNombre.setBackground(new java.awt.Color(34, 39, 46));
+        jTFNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTFNombre.setForeground(new java.awt.Color(173, 186, 199));
+        jTFNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
+        jPanel1.add(jTFNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 200, 30));
+
+        btSalir.setBackground(new java.awt.Color(34, 39, 46));
+        btSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btSalir.setForeground(new java.awt.Color(173, 186, 199));
+        btSalir.setText("Salir");
+        btSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btSalir.setContentAreaFilled(false);
+        btSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, 100, 30));
+
+        btBorrar.setBackground(new java.awt.Color(34, 39, 46));
+        btBorrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btBorrar.setForeground(new java.awt.Color(173, 186, 199));
+        btBorrar.setText("Borrar");
+        btBorrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btBorrar.setContentAreaFilled(false);
+        jPanel1.add(btBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 100, 30));
+
+        btActualizar.setBackground(new java.awt.Color(34, 39, 46));
+        btActualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btActualizar.setForeground(new java.awt.Color(173, 186, 199));
+        btActualizar.setText("Actualizar");
+        btActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btActualizar.setContentAreaFilled(false);
+        jPanel1.add(btActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 100, 30));
+
+        btBuscar.setBackground(new java.awt.Color(34, 39, 46));
+        btBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btBuscar.setForeground(new java.awt.Color(173, 186, 199));
+        btBuscar.setText("Buscar");
+        btBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btBuscar.setContentAreaFilled(false);
+        jPanel1.add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,17 +183,39 @@ public class friMaterias extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTFIdMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFIdMateriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFIdMateriaActionPerformed
+
+    private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btSalirActionPerformed
+
+    private void jCBEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBEstadoActionPerformed
+
+    private void jCmbBPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmbBPeriodoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCmbBPeriodoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btActualizar;
+    private javax.swing.JButton btBorrar;
+    private javax.swing.JButton btBuscar;
+    private javax.swing.JButton btGuardar;
+    private javax.swing.JButton btLimpiar;
+    private javax.swing.JButton btSalir;
+    private javax.swing.JCheckBox jCBEstado;
+    private javax.swing.JComboBox<String> jCmbBPeriodo;
+    private javax.swing.JLabel jLEstado;
+    private javax.swing.JLabel jLIdMateria;
+    private javax.swing.JLabel jLNombre;
+    private javax.swing.JLabel jLPeriodo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTFIdMateria;
+    private javax.swing.JTextField jTFNombre;
     // End of variables declaration//GEN-END:variables
 }

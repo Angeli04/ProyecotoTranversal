@@ -4,19 +4,29 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="jMAlumnos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Alumnos"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="jMMaterias">
           <Properties>
             <Property name="text" type="java.lang.String" value="Materias"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
+        <Menu class="javax.swing.JMenu" name="jMInscripciones">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inscripciones"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMCargarNotas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Carga de Notas"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMConsultas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Consultas"/>
           </Properties>
         </Menu>
       </SubComponents>

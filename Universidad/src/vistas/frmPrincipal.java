@@ -29,9 +29,11 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jMAlumnos = new javax.swing.JMenu();
+        jMMaterias = new javax.swing.JMenu();
+        jMInscripciones = new javax.swing.JMenu();
+        jMCargarNotas = new javax.swing.JMenu();
+        jMConsultas = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,14 +51,20 @@ public class frmPrincipal extends javax.swing.JFrame {
             .addGap(0, 451, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Alumnos");
-        jMenuBar1.add(jMenu1);
+        jMAlumnos.setText("Alumnos");
+        jMenuBar1.add(jMAlumnos);
 
-        jMenu2.setText("Materias");
-        jMenuBar1.add(jMenu2);
+        jMMaterias.setText("Materias");
+        jMenuBar1.add(jMMaterias);
 
-        jMenu3.setText("Inscripciones");
-        jMenuBar1.add(jMenu3);
+        jMInscripciones.setText("Inscripciones");
+        jMenuBar1.add(jMInscripciones);
+
+        jMCargarNotas.setText("Carga de Notas");
+        jMenuBar1.add(jMCargarNotas);
+
+        jMConsultas.setText("Consultas");
+        jMenuBar1.add(jMConsultas);
 
         setJMenuBar(jMenuBar1);
 
@@ -105,9 +113,11 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMAlumnos;
+    private javax.swing.JMenu jMCargarNotas;
+    private javax.swing.JMenu jMConsultas;
+    private javax.swing.JMenu jMInscripciones;
+    private javax.swing.JMenu jMMaterias;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
