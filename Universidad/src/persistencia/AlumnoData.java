@@ -48,6 +48,7 @@ public class AlumnoData {
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo obtener el ID.");
             }
+            rs.close();
             ps.close();
         } catch(SQLException ex) {
             //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
@@ -71,6 +72,7 @@ public class AlumnoData {
                 a.setEstado(rs.getInt("estado"));
                 a.setIdAlumno(rs.getInt("idAlumno"));
             }
+            rs.close();
             ps.close();
         } catch(SQLException ex) {
             //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
@@ -118,12 +120,12 @@ public class AlumnoData {
                 a.setDni(rs.getString("dni"));
                 a.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 a.setEstado(rs.getInt("estado"));
-                a.setIdAlumno(rs.getInt("id"));
+                a.setIdAlumno(rs.getInt("idAlumno"));
                 alumnos.add(a);
             }
             ps.close();
         } catch(SQLException ex) {
-            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en listarAlumnos.");
         }
         return alumnos;
