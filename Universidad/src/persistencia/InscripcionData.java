@@ -39,7 +39,11 @@ public class InscripcionData {
             PreparedStatement ps = conn.prepareStatement(q, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, i.getAlumno().getIdAlumno());
             ps.setInt(2, i.getMateria().getIdMateria());
-            ps.executeUpdate();
+            if( ps.executeUpdate() > 0 ){
+                JOptionPane.showMessageDialog(null, "Inscripción agregada exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "La inscripción no pudo ser agregada.");
+            }
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
                 i.setIdInscripcion(rs.getInt(1));
@@ -49,14 +53,13 @@ public class InscripcionData {
             ps.close();
             
         } catch(SQLException ex) {
-            Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en guardarInscripcion.");
         }
     }
         
     public Inscripcion obtenerInscripcion(Alumno a, Materia m){
         Inscripcion i = null;
-        AlumnoData aData = new AlumnoData(mCon);
-        MateriaData mData = new MateriaData(mCon);
         try{
             String q = "SELECT * FROM inscripciones WHERE idAlumno = ? AND idMateria = ?";
             PreparedStatement ps = conn.prepareStatement(q);
@@ -65,8 +68,9 @@ public class InscripcionData {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 i = new Inscripcion();
-                i.setAlumno( aData.obtenerAlumno(rs.getInt("idAlumno")) );
-                i.setMateria( mData.obtenerMateria(rs.getInt("idMateria")) );
+                i.setAlumno(a);
+                i.setMateria(m);
+                i.setNotaFinal(rs.getFloat("notaFinal"));
                 i.setIdInscripcion(rs.getInt("idInscripcion"));
             }
             ps.close();
@@ -83,7 +87,7 @@ public class InscripcionData {
             PreparedStatement ps = conn.prepareStatement(q);
             ps.setInt(1, a.getIdAlumno());
             ps.setInt(2, m.getIdMateria());
-            ps.executeQuery();
+            ps.executeUpdate();
             ps.close();
         } catch(SQLException ex) {
             //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
@@ -98,7 +102,7 @@ public class InscripcionData {
             ps.setFloat(1, nota);
             ps.setInt(2, a.getIdAlumno());
             ps.setInt(3, m.getIdMateria());
-            ps.executeQuery();
+            ps.executeUpdate();
             ps.close();
         } catch(SQLException ex) {
             //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
@@ -106,11 +110,49 @@ public class InscripcionData {
         }
     }
     
-    public List<Materia> obtenerMateriasInscriptas(Alumno a){
+    public List<Inscripcion> obtenerMateriasInscriptas(Alumno a){
+        Inscripcion i = null;
+        Materia m = null;
+        List<Inscripcion> lista = new ArrayList<>();
+        try{
+            String q = "SELECT materias.*, inscripciones.notaFinal "
+                    + "FROM inscripciones "
+                    + "JOIN materias ON materias.idMateria = inscripciones.idMateria "
+                    + "WHERE inscripciones.idAlumno = ?";
+            PreparedStatement ps = conn.prepareStatement(q);
+            ps.setInt(1, a.getIdAlumno());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                i = new Inscripcion();
+                i.setAlumno(a);
+                m = new Materia();
+                m.setNombre(rs.getString("nombre"));
+                m.setPeriodo(rs.getInt("periodo"));
+                m.setEstado(rs.getInt("estado"));
+                m.setIdMateria(rs.getInt("idMateria"));                
+                i.setMateria(m);
+                i.setNotaFinal(rs.getFloat("notaFinal"));
+                lista.add(i);
+            }
+            rs.close();
+            ps.close();
+        } catch(SQLException ex) {
+            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerMateriasInscriptas.");
+        }
+        return lista;
+    }
+    
+    public List<Materia> obtenerMateriasNoInscriptas(Alumno a){
         Materia m = null;
         List<Materia> lista = new ArrayList<>();
         try{
-            String q = "SELECT * FROM materias JOIN inscripciones ON inscripciones.idMateria = materias.idMateria AND inscripciones.idAlumno = ?";
+            String q = "SELECT * "
+                    + "FROM materias "
+                    + "WHERE idMateria NOT IN ( "
+                    + "SELECT idMateria "
+                    + "FROM inscripciones "
+                    + "WHERE inscripciones.idAlumno = ?) ";
             PreparedStatement ps = conn.prepareStatement(q);
             ps.setInt(1, a.getIdAlumno());
             ResultSet rs = ps.executeQuery();
@@ -119,54 +161,47 @@ public class InscripcionData {
                 m.setNombre(rs.getString("nombre"));
                 m.setPeriodo(rs.getInt("periodo"));
                 m.setEstado(rs.getInt("estado"));
-                m.setIdMateria(rs.getInt("idMateria"));
+                m.setIdMateria(rs.getInt("idMateria"));                
                 lista.add(m);
             }
             ps.close();
         } catch(SQLException ex) {
             //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerMateriasInscriptas.");
+            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerMateriasNoInscriptas.");
         }
         return lista;
     }
     
-    public List<Materia> obtenerMateriasNoInscriptos(Alumno a){
-        Materia m = null;
-        List<Materia> lista = new ArrayList<>();
-        MateriaData mData = new MateriaData(mCon);
-        try{
-            String q = "SELECT * FROM inscripciones WHERE idAlumno = ?";
-            PreparedStatement ps = conn.prepareStatement(q);
-            ps.setInt(1, a.getIdAlumno());
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                m = mData.obtenerMateria(rs.getInt("idMateria"));
-                lista.add(m);
-            }
-            ps.close();
-        } catch(SQLException ex) {
-            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerMateriasNoInscriptos.");
-        }
-        return lista;
-    }
-    
-    public List<Alumno> obtenerAlumnosInscriptos(Materia m){
+    public List<Inscripcion> obtenerAlumnosInscriptos(Materia m){
+        Inscripcion i = null;
         Alumno a = null;
-        List<Alumno> lista = new ArrayList<>();
-        AlumnoData aData = new AlumnoData(mCon);
+        List<Inscripcion> lista = new ArrayList<>();
         try{
-            String q = "SELECT * FROM inscripciones WHERE idMateria = ?";
+            String q = "SELECT alumnos.*, inscripciones.notaFinal "
+                    + "FROM inscripciones "
+                    + "JOIN alumnos ON alumnos.idAlumno= inscripciones.idAlumno "
+                    + "WHERE inscripciones.idMateria= ?";
             PreparedStatement ps = conn.prepareStatement(q);
             ps.setInt(1, m.getIdMateria());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                a = aData.obtenerAlumno(rs.getInt("idAlumno"));
-                lista.add(a);
+                i = new Inscripcion();
+                i.setMateria(m);
+                a = new Alumno();
+                a.setApellido(rs.getString("apellido"));
+                a.setNombre(rs.getString("nombre"));
+                a.setDni(rs.getString("dni"));
+                a.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                a.setEstado(rs.getInt("estado"));
+                a.setIdAlumno(rs.getInt("idAlumno"));                
+                i.setAlumno(a);
+                i.setNotaFinal(rs.getFloat("notaFinal"));
+                lista.add(i);
             }
+            rs.close();
             ps.close();
         } catch(SQLException ex) {
-            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerAlumnosInscriptos.");
         }
         return lista;

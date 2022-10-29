@@ -40,7 +40,7 @@ public class AlumnoData {
             if( ps.executeUpdate() > 0 ){
                 JOptionPane.showMessageDialog(null, "Alumno agregado exitosamente.");
             } else {
-                JOptionPane.showMessageDialog(null, "El alumno no puso ser agregado.");
+                JOptionPane.showMessageDialog(null, "El alumno no pudo ser agregado.");
             }
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){

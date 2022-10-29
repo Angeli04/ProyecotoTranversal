@@ -31,6 +31,7 @@ public class Universidad {
     Inscripcion inscripcion = null;
     List<Alumno> alumnos = null;
     List<Materia> materias = null;
+    List<Inscripcion> inscripciones = null;
     
     private MiConexion conn;
     
@@ -187,11 +188,35 @@ public class Universidad {
                     inscripcion.setAlumno(alumno);
                     inscripcion.setMateria(materia);
                     inscripcionData.guardarInscripcion(inscripcion);
-                    this.listaInscripciones(alumno);
+                    this.listaInscripcionesAlumno(alumno);
                     break;
                 case 8:
+                    System.out.println("Colocar nota final");
+                    System.out.println("Seleccione un alumno");
+                    this.listaAlumnos();
+                    alumno = alumnoData.obtenerAlumno(sc.nextInt());
+                    sc.nextLine();
+                    System.out.println(alumno.toString());
+                    System.out.println("Seleccione una materia");
+                    this.listaInscripcionesAlumno(alumno);
+                    materia = materiaData.obtenerMateria(sc.nextInt());
+                    sc.nextLine();
+                    float notaFinal = 0;
+                    do{
+                        System.out.println("Ingrese la nota");
+                        notaFinal = sc.nextFloat();                        
+                    } while(notaFinal < 0 || notaFinal > 10);
+                    sc.nextLine();
+                    inscripcionData.actualizarNota(alumno, materia, notaFinal);
+                    this.listaInscripcionesAlumno(alumno);
                     break;
                 case 9:
+                    System.out.println("Ver alumnos inscriptos");
+                    System.out.println("Seleccione una materia");
+                    this.listaMaterias();
+                    materia = materiaData.obtenerMateria(sc.nextInt());
+                    sc.nextLine();
+                    this.listaInscripcionesMateria(materia);
                     break;
                 case 0:
                     exit = true;
@@ -220,13 +245,26 @@ public class Universidad {
         System.out.println("<-------------------------------------->");        
     }
     
-    private void listaInscripciones(Alumno alu){
+    private void listaInscripcionesAlumno(Alumno alu){
         System.out.println("<-------------------------------------->");
         System.out.println("Lista de inscripciones del alumno");
         System.out.println(alu.toString());
-        materias = inscripcionData.obtenerMateriasInscriptas(alu);
-        materias.forEach((m) -> {
-            System.out.println(m.toString());
+        System.out.println("<-------------------------------------->");    
+        inscripciones = inscripcionData.obtenerMateriasInscriptas(alu);
+        inscripciones.forEach((i) -> {
+            System.out.println(i.getMateria().toString() +" nota: "+i.getNotaFinal());
+        });
+        System.out.println("<-------------------------------------->");        
+    }
+
+    private void listaInscripcionesMateria(Materia mat){
+        System.out.println("<-------------------------------------->");
+        System.out.println("Lista de inscripciones de la materia");
+        System.out.println(mat.toString());
+        System.out.println("<-------------------------------------->");    
+        inscripciones = inscripcionData.obtenerAlumnosInscriptos(mat);
+        inscripciones.forEach((i) -> {
+            System.out.println(i.getAlumno().toString() +" nota: "+i.getNotaFinal());
         });
         System.out.println("<-------------------------------------->");        
     }    
