@@ -80,6 +80,6 @@ public class Alumno {
     
     @Override
     public String toString(){
-         return "Nombre completo: "+this.getNombre()+" "+this.getApellido()+" DNI: "+this.getDni()+" F de Nac: "+this.getFechaNacimiento();
+         return "ID: "+this.getIdAlumno()+" Nombre completo: "+this.getNombre()+" "+this.getApellido()+" DNI: "+this.getDni()+" F de Nac: "+this.getFechaNacimiento();
     }
 }

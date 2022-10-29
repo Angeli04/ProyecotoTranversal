@@ -51,7 +51,7 @@ public class AlumnoData {
             rs.close();
             ps.close();
         } catch(SQLException ex) {
-            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en guardarAlumno.");
         }
     }

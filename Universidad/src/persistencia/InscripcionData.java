@@ -33,7 +33,7 @@ public class InscripcionData {
     }
     
     public void guardarInscripcion(Inscripcion i){
-        String q = "INSERT INTO inscripciones(alumnoID, materiaID) VALUES (?,?)";
+        String q = "INSERT INTO inscripciones(idAlumno, idMateria) VALUES (?,?)";
         
         try{
             PreparedStatement ps = conn.prepareStatement(q, Statement.RETURN_GENERATED_KEYS);
@@ -109,14 +109,17 @@ public class InscripcionData {
     public List<Materia> obtenerMateriasInscriptas(Alumno a){
         Materia m = null;
         List<Materia> lista = new ArrayList<>();
-        MateriaData mData = new MateriaData(mCon);
         try{
-            String q = "SELECT * FROM inscripciones WHERE idAlumno = ?";
+            String q = "SELECT * FROM materias JOIN inscripciones ON inscripciones.idMateria = materias.idMateria AND inscripciones.idAlumno = ?";
             PreparedStatement ps = conn.prepareStatement(q);
             ps.setInt(1, a.getIdAlumno());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                m = mData.obtenerMateria(rs.getInt("idMateria"));
+                m = new Materia();
+                m.setNombre(rs.getString("nombre"));
+                m.setPeriodo(rs.getInt("periodo"));
+                m.setEstado(rs.getInt("estado"));
+                m.setIdMateria(rs.getInt("idMateria"));
                 lista.add(m);
             }
             ps.close();

@@ -44,7 +44,7 @@ public class Inscripcion {
         return materia;
     }
 
-    public void setMateria(Materia idMateria) {
+    public void setMateria(Materia materia) {
         this.materia = materia;
     }
 

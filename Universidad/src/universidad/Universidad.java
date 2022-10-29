@@ -77,26 +77,23 @@ public class Universidad {
             System.out.println("3. Eliminar alumno");
             System.out.println("4. Crear materia");
             System.out.println("5. Actualizar materia");
-            System.out.println("6. Crear inscripcion");
-            System.out.println("7. Colocar nota final");
+            System.out.println("6. Eliminar materia");
+            System.out.println("7. Crear inscripcion");
+            System.out.println("8. Colocar nota final");
+            System.out.println("9. Ver alumnos inscriptos a una materia");
             System.out.println("0. Salir");
             System.out.println("Elija opción:");
             opcion = sc.nextInt();
             switch(opcion) {
                 case 1:
-                    System.out.println("<-------------------------------------->");
-                    System.out.println("Lista de alumnos");
-                    alumnos = alumnoData.listarAlumnos();
-                    alumnos.forEach((a) -> {
-                        System.out.println(alumnos.indexOf(a) + " : "  + a.getApellido() + " " + a.getNombre() + " DNI: " +a.getDni() );
-                    });
-                    System.out.println("<-------------------------------------->");
+                    this.listaAlumnos();
                     System.out.println("Que alumno desea cargar");
                     System.out.println("1 - Barrios Juan 32000001 15/01/2000");
                     System.out.println("2 - Lucero Melisa 32000002 25/04/2002");
                     System.out.println("3 - Paez Carlos 32000003 30/09/2003");
                     System.out.println("4 - Zarate Mariana 32000004 18/02/2001");
-                    switch(sc.nextInt()) {
+                    opcion = sc.nextInt();
+                    switch( opcion ) {
                         case 1:
                             alumno = new Alumno("Barrios", "Juan", "32000001", LocalDate.parse("2000-01-15"), 1);
                             break;
@@ -111,52 +108,90 @@ public class Universidad {
                             break;
                     }                    
                     alumnoData.guardarAlumno(alumno);
-                    System.out.println("<-------------------------------------->");
-                    System.out.println("Lista de alumnos");
-                    alumnos = alumnoData.listarAlumnos();
-                    alumnos.forEach((a) -> {
-                        System.out.println(alumnos.indexOf(a) + " : "  + a.getApellido() + " " + a.getNombre() + " DNI: " +a.getDni() );
-                    });
-                    System.out.println("<-------------------------------------->");
+                    this.listaAlumnos();
                     break;
                 case 2:
                     System.out.println("Editar el nombre de un alumno");
-                    System.out.println("<-------------------------------------->");
-                    System.out.println("Lista de alumnos");
-                    alumnos = alumnoData.listarAlumnos();
-                    alumnos.forEach((a) -> {
-                        System.out.println(alumnos.indexOf(a) + " : "  + a.getApellido() + " " + a.getNombre() + " DNI: " +a.getDni() );
-                    });
-                    System.out.println("<-------------------------------------->");
-                    alumno = alumnos.get(sc.nextInt());
+                    System.out.println("Seleccione un alumno");
+                    this.listaAlumnos();
+                    alumno = alumnoData.obtenerAlumno(sc.nextInt());
+                    sc.nextLine();
+                    System.out.println("Ingrese el nuevo nombre");
                     alumno.setNombre(sc.nextLine());
-                    System.out.println("<-------------------------------------->");
-                    System.out.println("Lista de alumnos");
-                    alumnos = alumnoData.listarAlumnos();
-                    alumnos.forEach((a) -> {
-                        System.out.println(alumnos.indexOf(a) + " : "  + a.getApellido() + " " + a.getNombre() + " DNI: " +a.getDni() );
-                    });
-                    System.out.println("<-------------------------------------->");
+                    alumnoData.actualizarAlumno(alumno);
+                    this.listaAlumnos();
                     break;
                 case 3:
                     System.out.println("Eliminar un alumno");
-                    System.out.println("<-------------------------------------->");
-                    System.out.println("Lista de alumnos");
-                    alumnos = alumnoData.listarAlumnos();
-                    alumnos.forEach((a) -> {
-                        System.out.println(alumnos.indexOf(a) + " : "  + a.getApellido() + " " + a.getNombre() + " DNI: " +a.getDni() );
-                    });
-                    System.out.println("<-------------------------------------->");
+                    System.out.println("Seleccione un alumno");
+                    this.listaAlumnos();
                     alumnoData.eliminarAlumno(sc.nextInt());
-                    System.out.println("<-------------------------------------->");
-                    System.out.println("Lista de alumnos");
-                    alumnos = alumnoData.listarAlumnos();
-                    alumnos.forEach((a) -> {
-                        System.out.println(alumnos.indexOf(a) + " : "  + a.getApellido() + " " + a.getNombre() + " DNI: " +a.getDni() );
-                    });
-                    System.out.println("<-------------------------------------->");
+                    this.listaAlumnos();
                     break;
                 case 4:
+                    this.listaMaterias();
+                    System.out.println("Que materia desea cargar");
+                    System.out.println("1 - Matemáticas I");
+                    System.out.println("2 - Matemáticas II");
+                    System.out.println("3 - Móviles");
+                    System.out.println("4 - Práctica profesional");
+                    opcion = sc.nextInt();
+                    switch( opcion ) {
+                        case 1:
+                            materia = new Materia("Matemáticas I", 1, 1);
+                            break;
+                        case 2:
+                            materia = new Materia("Matemáticas II", 2, 1);
+                            break;
+                        case 3:
+                            materia = new Materia("Móviles", 2, 1);
+                            break;
+                        case 4:
+                            materia = new Materia("Práctica profesional", 3, 1);
+                            break;
+                    }                    
+                    materiaData.guardarMateria(materia);
+                    this.listaMaterias();
+                    break;
+                case 5:
+                    System.out.println("Editar el nombre de un materia");
+                    System.out.println("Seleccione una materia");
+                    this.listaMaterias();
+                    materia = materiaData.obtenerMateria(sc.nextInt());
+                    sc.nextLine();
+                    System.out.println("Ingrese el nuevo nombre");
+                    materia.setNombre(sc.nextLine());
+                    materiaData.actualizarMateria(materia);
+                    this.listaMaterias();
+                    break;
+                case 6:
+                    System.out.println("Eliminar una materia");
+                    System.out.println("Seleccione una materia");
+                    this.listaMaterias();
+                    materiaData.eliminarMateria(sc.nextInt());
+                    this.listaMaterias();
+                    break;
+                case 7:
+                    System.out.println("Crear una inscripción");
+                    System.out.println("Seleccione un alumno");
+                    this.listaAlumnos();
+                    alumno = alumnoData.obtenerAlumno(sc.nextInt());
+                    sc.nextLine();
+                    System.out.println(alumno.toString());
+                    System.out.println("Seleccione una materia");
+                    this.listaMaterias();
+                    materia = materiaData.obtenerMateria(sc.nextInt());
+                    sc.nextLine();
+                    System.out.println(materia.toString());
+                    inscripcion = new Inscripcion();
+                    inscripcion.setAlumno(alumno);
+                    inscripcion.setMateria(materia);
+                    inscripcionData.guardarInscripcion(inscripcion);
+                    this.listaInscripciones(alumno);
+                    break;
+                case 8:
+                    break;
+                case 9:
                     break;
                 case 0:
                     exit = true;
@@ -164,4 +199,35 @@ public class Universidad {
             }
         } while (!exit);
     }
+    
+    private void listaAlumnos(){
+        System.out.println("<-------------------------------------->");
+        System.out.println("Lista de alumnos");
+        alumnos = alumnoData.listarAlumnos();
+        alumnos.forEach((a) -> {
+            System.out.println(a.toString());
+        });
+        System.out.println("<-------------------------------------->");        
+    }
+    
+    private void listaMaterias(){
+        System.out.println("<-------------------------------------->");
+        System.out.println("Lista de materias");
+        materias = materiaData.listarMaterias();
+        materias.forEach((m) -> {
+            System.out.println(m.toString());
+        });
+        System.out.println("<-------------------------------------->");        
+    }
+    
+    private void listaInscripciones(Alumno alu){
+        System.out.println("<-------------------------------------->");
+        System.out.println("Lista de inscripciones del alumno");
+        System.out.println(alu.toString());
+        materias = inscripcionData.obtenerMateriasInscriptas(alu);
+        materias.forEach((m) -> {
+            System.out.println(m.toString());
+        });
+        System.out.println("<-------------------------------------->");        
+    }    
 }

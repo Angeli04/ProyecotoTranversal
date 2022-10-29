@@ -58,7 +58,7 @@ public class Materia {
     
     @Override
     public String toString(){
-         return "Materia: "+this.getNombre()+" Periodo: "+this.getPeriodo();
+         return "ID: "+this.getIdMateria()+" Materia: "+this.getNombre()+" Periodo: "+this.getPeriodo();
     }
     
 }
