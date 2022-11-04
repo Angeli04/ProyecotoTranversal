@@ -31,100 +31,138 @@ public class friInscripciones extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jlFormularioInscripcion = new javax.swing.JLabel();
+        jlListadoMaterias = new javax.swing.JLabel();
         cbAlumnos = new javax.swing.JComboBox<>();
-        cbMaterias = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jlAlumno = new javax.swing.JLabel();
+        rbNoInscriptas = new javax.swing.JRadioButton();
+        rbInscriptas = new javax.swing.JRadioButton();
+        btAnularInscripcion = new javax.swing.JButton();
+        btInscribir = new javax.swing.JButton();
+        btSalir = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtMaterias = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(34, 39, 46));
         jPanel1.setForeground(new java.awt.Color(173, 186, 199));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(173, 186, 199));
-        jLabel1.setText("Formulario de inscripción");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        jlFormularioInscripcion.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jlFormularioInscripcion.setForeground(new java.awt.Color(173, 186, 199));
+        jlFormularioInscripcion.setText("Formulario de inscripción");
+        jPanel1.add(jlFormularioInscripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(173, 186, 199));
-        jLabel2.setText("Alumno");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 200, 30));
+        jlListadoMaterias.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlListadoMaterias.setForeground(new java.awt.Color(173, 186, 199));
+        jlListadoMaterias.setText("Listado de materias");
+        jPanel1.add(jlListadoMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 160, 30));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(173, 186, 199));
-        jLabel3.setText("Materia");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 200, 30));
+        cbAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cbAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 150, 30));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(173, 186, 199));
-        jLabel4.setText("Nota final");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 200, 30));
+        jlAlumno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlAlumno.setForeground(new java.awt.Color(173, 186, 199));
+        jlAlumno.setText("Alumno");
+        jPanel1.add(jlAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 90, 30));
 
-        cbAlumnos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cbAlumnos.setForeground(new java.awt.Color(173, 186, 199));
-        jPanel1.add(cbAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
-
-        cbMaterias.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cbMaterias.setForeground(new java.awt.Color(173, 186, 199));
-        jPanel1.add(cbMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 200, 30));
-
-        jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox3.setForeground(new java.awt.Color(173, 186, 199));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 200, 30));
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(173, 186, 199));
-        jButton1.setText("Guardar");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        rbNoInscriptas.setBackground(new java.awt.Color(34, 39, 46));
+        rbNoInscriptas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rbNoInscriptas.setForeground(new java.awt.Color(173, 186, 199));
+        rbNoInscriptas.setText("No Inscriptas");
+        rbNoInscriptas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                rbNoInscriptasActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 100, 30));
+        jPanel1.add(rbNoInscriptas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(173, 186, 199));
-        jButton2.setText("Salir");
-        jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
-        jButton2.setContentAreaFilled(false);
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 100, 30));
+        rbInscriptas.setBackground(new java.awt.Color(34, 39, 46));
+        rbInscriptas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rbInscriptas.setForeground(new java.awt.Color(173, 186, 199));
+        rbInscriptas.setText("Inscriptas");
+        rbInscriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbInscriptasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbInscriptas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
+
+        btAnularInscripcion.setBackground(new java.awt.Color(34, 39, 46));
+        btAnularInscripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btAnularInscripcion.setForeground(new java.awt.Color(173, 186, 199));
+        btAnularInscripcion.setText("Anular Inscripcion");
+        btAnularInscripcion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btAnularInscripcion.setContentAreaFilled(false);
+        jPanel1.add(btAnularInscripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 140, 30));
+
+        btInscribir.setBackground(new java.awt.Color(34, 39, 46));
+        btInscribir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btInscribir.setForeground(new java.awt.Color(173, 186, 199));
+        btInscribir.setText("Inscribir");
+        btInscribir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btInscribir.setContentAreaFilled(false);
+        jPanel1.add(btInscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 100, 30));
+
+        btSalir.setBackground(new java.awt.Color(34, 39, 46));
+        btSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btSalir.setForeground(new java.awt.Color(173, 186, 199));
+        btSalir.setText("Salir");
+        btSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btSalir.setContentAreaFilled(false);
+        jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 70, 30));
+
+        jtMaterias.setAutoCreateRowSorter(true);
+        jtMaterias.setBackground(new java.awt.Color(34, 39, 46));
+        jtMaterias.setForeground(new java.awt.Color(34, 39, 46));
+        jtMaterias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jtMaterias);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void rbNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNoInscriptasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_rbNoInscriptasActionPerformed
+
+    private void rbInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInscriptasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbInscriptasActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Alumno> cbAlumnos;
-    private javax.swing.JComboBox<Materia> cbMaterias;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton btAnularInscripcion;
+    private javax.swing.JButton btInscribir;
+    private javax.swing.JButton btSalir;
+    private javax.swing.JComboBox<String> cbAlumnos;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel jlAlumno;
+    private javax.swing.JLabel jlFormularioInscripcion;
+    private javax.swing.JLabel jlListadoMaterias;
+    private javax.swing.JTable jtMaterias;
+    private javax.swing.JRadioButton rbInscriptas;
+    private javax.swing.JRadioButton rbNoInscriptas;
     // End of variables declaration//GEN-END:variables
 }

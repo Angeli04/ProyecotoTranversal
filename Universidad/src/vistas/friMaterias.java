@@ -97,7 +97,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
         btLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btLimpiar.setForeground(new java.awt.Color(173, 186, 199));
         btLimpiar.setText("Limpiar");
-        btLimpiar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btLimpiar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btLimpiar.setContentAreaFilled(false);
         jPanel1.add(btLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 100, 30));
 
@@ -105,7 +105,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
         btGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btGuardar.setForeground(new java.awt.Color(173, 186, 199));
         btGuardar.setText("Guardar");
-        btGuardar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btGuardar.setContentAreaFilled(false);
         jPanel1.add(btGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 100, 30));
 
@@ -136,7 +136,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
         btSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btSalir.setForeground(new java.awt.Color(173, 186, 199));
         btSalir.setText("Salir");
-        btSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btSalir.setContentAreaFilled(false);
         btSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +149,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
         btBorrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btBorrar.setForeground(new java.awt.Color(173, 186, 199));
         btBorrar.setText("Borrar");
-        btBorrar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btBorrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btBorrar.setContentAreaFilled(false);
         jPanel1.add(btBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 100, 30));
 
@@ -157,7 +157,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
         btActualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btActualizar.setForeground(new java.awt.Color(173, 186, 199));
         btActualizar.setText("Actualizar");
-        btActualizar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btActualizar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btActualizar.setContentAreaFilled(false);
         jPanel1.add(btActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 100, 30));
 
@@ -165,7 +165,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
         btBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btBuscar.setForeground(new java.awt.Color(173, 186, 199));
         btBuscar.setText("Buscar");
-        btBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btBuscar.setContentAreaFilled(false);
         jPanel1.add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 100, 30));
 
