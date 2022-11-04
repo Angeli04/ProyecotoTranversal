@@ -6,27 +6,34 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMAlumnos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Alumnos"/>
+            <Property name="text" type="java.lang.String" value="Universidad"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="miAlumnos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alumnos"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miMaterias">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Materias"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miInscripciones">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Inscripciones"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="miNotas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Notas"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMMaterias">
+        <Menu class="javax.swing.JMenu" name="mnSalir">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Materias"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMInscripciones">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Inscripciones"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMCargarNotas">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Carga de Notas"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMConsultas">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Consultas"/>
+            <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
         </Menu>
       </SubComponents>

@@ -30,10 +30,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMAlumnos = new javax.swing.JMenu();
-        jMMaterias = new javax.swing.JMenu();
-        jMInscripciones = new javax.swing.JMenu();
-        jMCargarNotas = new javax.swing.JMenu();
-        jMConsultas = new javax.swing.JMenu();
+        miAlumnos = new javax.swing.JMenuItem();
+        miMaterias = new javax.swing.JMenuItem();
+        miInscripciones = new javax.swing.JMenuItem();
+        miNotas = new javax.swing.JMenuItem();
+        mnSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,20 +52,24 @@ public class frmPrincipal extends javax.swing.JFrame {
             .addGap(0, 451, Short.MAX_VALUE)
         );
 
-        jMAlumnos.setText("Alumnos");
+        jMAlumnos.setText("Universidad");
+
+        miAlumnos.setText("Alumnos");
+        jMAlumnos.add(miAlumnos);
+
+        miMaterias.setText("Materias");
+        jMAlumnos.add(miMaterias);
+
+        miInscripciones.setText("Inscripciones");
+        jMAlumnos.add(miInscripciones);
+
+        miNotas.setText("Notas");
+        jMAlumnos.add(miNotas);
+
         jMenuBar1.add(jMAlumnos);
 
-        jMMaterias.setText("Materias");
-        jMenuBar1.add(jMMaterias);
-
-        jMInscripciones.setText("Inscripciones");
-        jMenuBar1.add(jMInscripciones);
-
-        jMCargarNotas.setText("Carga de Notas");
-        jMenuBar1.add(jMCargarNotas);
-
-        jMConsultas.setText("Consultas");
-        jMenuBar1.add(jMConsultas);
+        mnSalir.setText("Salir");
+        jMenuBar1.add(mnSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -114,10 +119,11 @@ public class frmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMAlumnos;
-    private javax.swing.JMenu jMCargarNotas;
-    private javax.swing.JMenu jMConsultas;
-    private javax.swing.JMenu jMInscripciones;
-    private javax.swing.JMenu jMMaterias;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem miAlumnos;
+    private javax.swing.JMenuItem miInscripciones;
+    private javax.swing.JMenuItem miMaterias;
+    private javax.swing.JMenuItem miNotas;
+    private javax.swing.JMenu mnSalir;
     // End of variables declaration//GEN-END:variables
 }
