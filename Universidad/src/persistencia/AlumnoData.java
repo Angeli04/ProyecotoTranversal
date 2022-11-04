@@ -26,7 +26,7 @@ public class AlumnoData {
     private Connection conn = null;
 
     public AlumnoData(MiConexion conn) {
-        this.conn = conn.buscarConexion();
+//        this.conn = conn.buscarConexion();
     }
     
     public void guardarAlumno(Alumno a){

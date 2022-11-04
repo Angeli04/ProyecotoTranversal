@@ -5,7 +5,13 @@
  */
 package vistas;
 
+import entidades.Alumno;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import persistencia.AlumnoData;
+import persistencia.MiConexion;
 
 /**
  *
@@ -16,8 +22,11 @@ public class friAlumnos extends javax.swing.JInternalFrame {
     /**
      * Creates new form friAlumnos
      */
+    AlumnoData aD;
     public friAlumnos() {
         initComponents();
+         MiConexion conn= null;
+       aD= new AlumnoData(conn);
     }
 
     /**
@@ -238,7 +247,31 @@ public class friAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btBorrarActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-        // TODO add your handling code here:
+         Alumno al= new Alumno();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        if(jdcFechaNacimiento.getDate()!=null){
+            format.format(jdcFechaNacimiento.getDate());         
+        }
+        String fecha= format.toString();
+        try{
+   
+        Date fecha1=(Date) format.parse(fecha);
+        }catch (ParseException e){
+        }
+        
+        al.getFechaNacimiento();
+         al.setNombre(jTFNombre.getText());
+        al.setApellido(jTFApellido.getText());
+        al.setDni(jTFDni.getText());
+        ckEstado.isEnabled();
+        if (ckEstado.isEnabled()){
+            al.setEstado(1);
+        } else{
+            al.setEstado(0);
+        }
+        
+        aD.guardarAlumno(al);
+        Limpiar();
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void jTFApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFApellidoFocusLost
