@@ -15,6 +15,7 @@ import persistencia.AlumnoData;
 import persistencia.InscripcionData;
 import persistencia.MateriaData;
 import persistencia.MiConexion;
+import vistas.friAlumnos;
 import vistas.frmPrincipal;
 
 /**
@@ -39,12 +40,18 @@ public class Universidad {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+         frmPrincipal vent1= new frmPrincipal();
+        vent1.setVisible(true);
+        friAlumnos vent= new friAlumnos();
+        vent.setVisible(true);
+       
+        
         //frmPrincipal framePrincipal = new frmPrincipal();
         //framePrincipal.setLocationRelativeTo(null);
         //framePrincipal.setVisible(true);
-        new Universidad().conectar();
+//        new Universidad().conectar();
     }
-    
+  /**  
     private void conectar(){
         conn = new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
         alumnoData = new AlumnoData(conn);
@@ -67,7 +74,7 @@ public class Universidad {
         
         alumnoData.eliminarAlumno(3);
         */
-        
+        /**
         Scanner sc = new Scanner(System.in);
         int opcion;
         boolean exit = false;
@@ -267,5 +274,5 @@ public class Universidad {
             System.out.println(i.getAlumno().toString() +" nota: "+i.getNotaFinal());
         });
         System.out.println("<-------------------------------------->");        
-    }    
+    }    */
 }

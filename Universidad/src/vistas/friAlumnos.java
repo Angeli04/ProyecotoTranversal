@@ -5,6 +5,8 @@
  */
 package vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author PUESTO-A1
@@ -38,11 +40,14 @@ public class friAlumnos extends javax.swing.JInternalFrame {
         ckEstado = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         btBuscar = new javax.swing.JButton();
-        btSalir = new javax.swing.JButton();
+        btBorrar = new javax.swing.JButton();
         lbEstado1 = new javax.swing.JLabel();
-        jTFFechaNacimiento = new javax.swing.JFormattedTextField();
-        btGuardar1 = new javax.swing.JButton();
+        btGuardar = new javax.swing.JButton();
+        btLimpiar = new javax.swing.JButton();
+        btActualizar = new javax.swing.JButton();
+        jdcFechaNacimiento = new com.toedter.calendar.JDateChooser();
 
+        setClosable(true);
         setMinimumSize(new java.awt.Dimension(600, 450));
         setPreferredSize(new java.awt.Dimension(600, 450));
 
@@ -76,6 +81,11 @@ public class friAlumnos extends javax.swing.JInternalFrame {
         jTFApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFApellido.setForeground(new java.awt.Color(173, 186, 199));
         jTFApellido.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
+        jTFApellido.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFApellidoFocusLost(evt);
+            }
+        });
         jTFApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFApellidoActionPerformed(evt);
@@ -87,12 +97,22 @@ public class friAlumnos extends javax.swing.JInternalFrame {
         jTFNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFNombre.setForeground(new java.awt.Color(173, 186, 199));
         jTFNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
+        jTFNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFNombreFocusLost(evt);
+            }
+        });
         jPanel1.add(jTFNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 200, 30));
 
         jTFDni.setBackground(new java.awt.Color(34, 39, 46));
         jTFDni.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFDni.setForeground(new java.awt.Color(173, 186, 199));
         jTFDni.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
+        jTFDni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFDniFocusLost(evt);
+            }
+        });
         jPanel1.add(jTFDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 200, 30));
 
         ckEstado.setBackground(new java.awt.Color(34, 39, 46));
@@ -105,7 +125,7 @@ public class friAlumnos extends javax.swing.JInternalFrame {
                 ckEstadoActionPerformed(evt);
             }
         });
-        jPanel1.add(ckEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 200, 30));
+        jPanel1.add(ckEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 80, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(173, 186, 199));
@@ -125,43 +145,65 @@ public class friAlumnos extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 100, 30));
 
-        btSalir.setBackground(new java.awt.Color(34, 39, 46));
-        btSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btSalir.setForeground(new java.awt.Color(173, 186, 199));
-        btSalir.setText("Salir");
-        btSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btSalir.setContentAreaFilled(false);
-        btSalir.addActionListener(new java.awt.event.ActionListener() {
+        btBorrar.setBackground(new java.awt.Color(34, 39, 46));
+        btBorrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btBorrar.setForeground(new java.awt.Color(173, 186, 199));
+        btBorrar.setText("Borrar");
+        btBorrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btBorrar.setContentAreaFilled(false);
+        btBorrar.setEnabled(false);
+        btBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalirActionPerformed(evt);
+                btBorrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 100, 30));
+        jPanel1.add(btBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 100, 30));
 
         lbEstado1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbEstado1.setForeground(new java.awt.Color(173, 186, 199));
         lbEstado1.setText("Estado");
-        jPanel1.add(lbEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 200, 30));
+        jPanel1.add(lbEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 140, 30));
 
-        jTFFechaNacimiento.setBackground(new java.awt.Color(34, 39, 46));
-        jTFFechaNacimiento.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
-        jTFFechaNacimiento.setForeground(new java.awt.Color(173, 186, 199));
-        jTFFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        jTFFechaNacimiento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(jTFFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 200, 30));
-
-        btGuardar1.setBackground(new java.awt.Color(34, 39, 46));
-        btGuardar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btGuardar1.setForeground(new java.awt.Color(173, 186, 199));
-        btGuardar1.setText("Guardar");
-        btGuardar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btGuardar1.setContentAreaFilled(false);
-        btGuardar1.addActionListener(new java.awt.event.ActionListener() {
+        btGuardar.setBackground(new java.awt.Color(34, 39, 46));
+        btGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btGuardar.setForeground(new java.awt.Color(173, 186, 199));
+        btGuardar.setText("Guardar");
+        btGuardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btGuardar.setContentAreaFilled(false);
+        btGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btGuardar1ActionPerformed(evt);
+                btGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, 100, 30));
+        jPanel1.add(btGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 100, 30));
+
+        btLimpiar.setBackground(new java.awt.Color(34, 39, 46));
+        btLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btLimpiar.setForeground(new java.awt.Color(173, 186, 199));
+        btLimpiar.setText("Limpiar");
+        btLimpiar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btLimpiar.setContentAreaFilled(false);
+        btLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 100, 30));
+
+        btActualizar.setBackground(new java.awt.Color(34, 39, 46));
+        btActualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btActualizar.setForeground(new java.awt.Color(173, 186, 199));
+        btActualizar.setText("Actualizar");
+        btActualizar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btActualizar.setContentAreaFilled(false);
+        btActualizar.setEnabled(false);
+        btActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btActualizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 100, 30));
+        jPanel1.add(jdcFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,26 +233,70 @@ public class friAlumnos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btBuscarActionPerformed
 
-    private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
+    private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btSalirActionPerformed
+    }//GEN-LAST:event_btBorrarActionPerformed
 
-    private void btGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardar1ActionPerformed
+    private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btGuardar1ActionPerformed
+    }//GEN-LAST:event_btGuardarActionPerformed
 
+    private void jTFApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFApellidoFocusLost
+String val="[a-zA-Z]*";
+        if (!jTFApellido.getText().matches(val)){
+            JOptionPane.showMessageDialog(this, "No es un dato Valido para apellido.");
+            jTFApellido.requestFocus();
+        }        
+    }//GEN-LAST:event_jTFApellidoFocusLost
+
+    private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
+        Limpiar();
+        jTFApellido.setText("");
+        
+        
+    }//GEN-LAST:event_btLimpiarActionPerformed
+
+    private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btActualizarActionPerformed
+
+    private void jTFNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNombreFocusLost
+         String val="[a-zA-Z]*";
+        if(!jTFNombre.getText().matches(val)){
+            JOptionPane.showMessageDialog(this,"No es un dato valido para nombre.");
+            jTFNombre.requestFocus();
+        
+        }
+    }//GEN-LAST:event_jTFNombreFocusLost
+
+    private void jTFDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDniFocusLost
+          String val="[0-9]*";
+        if(!jTFDni.getText().matches(val)){
+            JOptionPane.showMessageDialog(this, "No es un dato valido para DNI.");
+            jTFDni.requestFocus();
+        }
+    }//GEN-LAST:event_jTFDniFocusLost
+    private void Limpiar(){
+        jTFApellido.setText("");
+        jTFNombre.setText("");
+        jTFDni.setText("");
+        jdcFechaNacimiento.setDate(null);
+        ckEstado.setEnabled(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btActualizar;
+    private javax.swing.JButton btBorrar;
     private javax.swing.JButton btBuscar;
-    private javax.swing.JButton btGuardar1;
-    private javax.swing.JButton btSalir;
+    private javax.swing.JButton btGuardar;
+    private javax.swing.JButton btLimpiar;
     private javax.swing.JCheckBox ckEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTFApellido;
     private javax.swing.JTextField jTFDni;
-    private javax.swing.JFormattedTextField jTFFechaNacimiento;
     private javax.swing.JTextField jTFNombre;
+    private com.toedter.calendar.JDateChooser jdcFechaNacimiento;
     private javax.swing.JLabel lbApellido;
     private javax.swing.JLabel lbDni;
     private javax.swing.JLabel lbEstado1;
