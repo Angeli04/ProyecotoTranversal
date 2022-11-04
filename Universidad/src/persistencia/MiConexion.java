@@ -10,31 +10,35 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author PUESTO-A1
  */
 public class MiConexion {
-    private String url;
-    private String usuario;
-    private String pass;
-                            
-    private Connection conn;
+    private static String url = "jdbc:mysql://localhost/universidad";
+    private static String usuario = "root";
+    private static String pass = "";
+    private static Connection conn = null;
 
-    public MiConexion(String url, String usuario, String pass) {
-        this.url = url;
-        this.usuario = usuario;
-        this.pass = pass;
+    public MiConexion() {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch(ClassNotFoundException ex){
+            //Logger.getLogger(MiConexion.class).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "No se pudo obtener el Driver.");
+        }
+        
     }
     
-    public Connection buscarConexion(){
+    public static Connection getConexion(){
+        Connection conn = null;
         if(conn == null){
             try{
-                Class.forName("com.mysql.cj.jdbc.Driver");
                 conn = DriverManager.getConnection(url, usuario, pass);
-            } catch(SQLException | ClassNotFoundException ex){
-                Logger.getLogger(MiConexion.class).log(Level.SEVERE, null, ex);
+            } catch(SQLException ex){
+                JOptionPane.showMessageDialog(null, "No se pudo conectar a la base.");
             }
         }
         return conn;

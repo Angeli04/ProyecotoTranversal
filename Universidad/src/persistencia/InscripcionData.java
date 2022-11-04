@@ -25,11 +25,9 @@ import javax.swing.JOptionPane;
  */
 public class InscripcionData {
     private Connection conn = null;
-    private MiConexion mCon = null;
 
-    public InscripcionData(MiConexion conn) {
-        this.mCon = conn;
-        this.conn = conn.buscarConexion();
+    public InscripcionData() {
+        this.conn = MiConexion.getConexion();
     }
     
     public void guardarInscripcion(Inscripcion i){
@@ -137,7 +135,7 @@ public class InscripcionData {
             rs.close();
             ps.close();
         } catch(SQLException ex) {
-            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerMateriasInscriptas.");
         }
         return lista;
@@ -152,7 +150,8 @@ public class InscripcionData {
                     + "WHERE idMateria NOT IN ( "
                     + "SELECT idMateria "
                     + "FROM inscripciones "
-                    + "WHERE inscripciones.idAlumno = ?) ";
+                    + "WHERE inscripciones.idAlumno = ?) "
+                    + "AND estado = 1";
             PreparedStatement ps = conn.prepareStatement(q);
             ps.setInt(1, a.getIdAlumno());
             ResultSet rs = ps.executeQuery();

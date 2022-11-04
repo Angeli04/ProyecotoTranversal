@@ -25,8 +25,8 @@ import javax.swing.JOptionPane;
 public class AlumnoData {
     private Connection conn = null;
 
-    public AlumnoData(MiConexion conn) {
-        this.conn = conn.buscarConexion();
+    public AlumnoData() {
+        this.conn = MiConexion.getConexion();
     }
     
     public void guardarAlumno(Alumno a){
@@ -108,7 +108,7 @@ public class AlumnoData {
     public List<Alumno> listarAlumnos(){
         Alumno a;
         List<Alumno> alumnos = new ArrayList<>();
-        String q = "SELECT * FROM alumnos WHERE estado = 1";
+        String q = "SELECT * FROM alumnos WHERE estado = 1 ORDER BY apellido DESC";
         
         try{
             PreparedStatement ps = conn.prepareStatement(q);
