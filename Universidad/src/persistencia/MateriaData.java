@@ -48,7 +48,7 @@ public class MateriaData {
             //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "No se pudo obtener el ID.");
         }
-    }
+    } // guarda una materia nueva.
     
     public Materia obtenerMateria(int id){
         Materia m = null;
@@ -71,7 +71,7 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerMateria.");
         }
         return m;
-    }
+    } // retorna una materia por id
     
     public List<Materia> listarMaterias(){
         Materia m = null;
@@ -95,7 +95,7 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en listarMaterias.");
         }
         return materias;
-    }
+    } //retorna todas las materias
     
     public void actualizarMateria(Materia m){
         String q = "UPDATE materias SET nombre = ?, periodo = ? WHERE idMateria= ?";
@@ -112,7 +112,7 @@ public class MateriaData {
             //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en actualizarMateria.");
         }
-    }
+    } // update de materia
     
     public void eliminarMateria(int id){
         String q = "DELETE FROM materias WHERE idMateria= ?";
@@ -126,5 +126,5 @@ public class MateriaData {
             //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en eliminarMateria.");
         }
-    }
+    } // borra la materia.
 }

@@ -9,6 +9,9 @@ import entidades.Alumno;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import javax.swing.JOptionPane;
 import persistencia.AlumnoData;
 import persistencia.MiConexion;
@@ -22,11 +25,12 @@ public class friAlumnos extends javax.swing.JInternalFrame {
     /**
      * Creates new form friAlumnos
      */
-    AlumnoData aD;
+   // AlumnoData aD;
     public friAlumnos() {
         initComponents();
-         MiConexion conn= null;
-       aD= new AlumnoData(conn);
+        
+         
+    //   aD= new AlumnoData();
     }
 
     /**
@@ -129,6 +133,7 @@ public class friAlumnos extends javax.swing.JInternalFrame {
         ckEstado.setForeground(new java.awt.Color(173, 186, 199));
         ckEstado.setText("Activo");
         ckEstado.setContentAreaFilled(false);
+        ckEstado.setEnabled(false);
         ckEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ckEstadoActionPerformed(evt);
@@ -239,7 +244,29 @@ public class friAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ckEstadoActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-        // TODO add your handling code here:
+        
+        Alumno al= new Alumno();
+        MiConexion con = new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
+        AlumnoData aD= new AlumnoData(con);
+        String dniBuscar=jTFDni.getText();
+        al=aD.obtenerAlumnoXDni(dniBuscar);
+        if (al!=null&&al.getEstado()!=0){
+            jTFNombre.setText(al.getNombre());
+            jTFApellido.setText(al.getApellido());
+            jTFDni.setText(al.getDni());
+            LocalDate lc = al.getFechaNacimiento();
+           Date date = (Date) Date.valueOf(lc);
+            jdcFechaNacimiento.setDate(date);
+            ckEstado.setEnabled(true);
+            ckEstado.setSelected(al.getEstado()==1);
+            btActualizar.setEnabled(true);
+            btBorrar.setEnabled(true);  
+        } else {
+            JOptionPane.showMessageDialog(this, "No existe un alumno con ese dni.");
+        }
+        
+        
+        
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
@@ -248,30 +275,17 @@ public class friAlumnos extends javax.swing.JInternalFrame {
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
          Alumno al= new Alumno();
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        if(jdcFechaNacimiento.getDate()!=null){
-            format.format(jdcFechaNacimiento.getDate());         
-        }
-        String fecha= format.toString();
-        try{
-   
-        Date fecha1=(Date) format.parse(fecha);
-        }catch (ParseException e){
-        }
-        
-        al.getFechaNacimiento();
-         al.setNombre(jTFNombre.getText());
+         MiConexion con = new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
+      
+        AlumnoData aD= new AlumnoData(con);
+        java.util.Date sfecha = jdcFechaNacimiento.getDate();
+        LocalDate fechaNac = sfecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        al.setFechaNacimiento(fechaNac);
+        al.setNombre(jTFNombre.getText());
         al.setApellido(jTFApellido.getText());
-        al.setDni(jTFDni.getText());
-        ckEstado.isEnabled();
-        if (ckEstado.isEnabled()){
-            al.setEstado(1);
-        } else{
-            al.setEstado(0);
-        }
-        
+        al.setDni(jTFDni.getText()); 
         aD.guardarAlumno(al);
-        Limpiar();
+        
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void jTFApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFApellidoFocusLost
@@ -290,9 +304,14 @@ String val="[a-zA-Z]*";
     }//GEN-LAST:event_btLimpiarActionPerformed
 
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
-        // TODO add your handling code here:
+        MiConexion con = new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
+        AlumnoData aD= new AlumnoData(con);
+        Alumno al= new Alumno();
+        al=aD.obtenerAlumnoXDni(jTFDni.getText());
+        aD.actualizarAlumno(al);
+        
     }//GEN-LAST:event_btActualizarActionPerformed
-
+///////////// revisar.
     private void jTFNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNombreFocusLost
          String val="[a-zA-Z]*";
         if(!jTFNombre.getText().matches(val)){
@@ -314,7 +333,7 @@ String val="[a-zA-Z]*";
         jTFNombre.setText("");
         jTFDni.setText("");
         jdcFechaNacimiento.setDate(null);
-        ckEstado.setEnabled(false);
+        ckEstado.setSelected(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

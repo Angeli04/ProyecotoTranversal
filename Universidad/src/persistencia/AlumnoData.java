@@ -26,17 +26,18 @@ public class AlumnoData {
     private Connection conn = null;
 
     public AlumnoData(MiConexion conn) {
-//        this.conn = conn.buscarConexion();
+        this.conn = conn.buscarConexion();
     }
     
     public void guardarAlumno(Alumno a){
-        String q = "INSERT INTO alumnos(apellido, nombre, dni, fechaNacimiento) VALUES (?,?,?,?)";
+        String q = "INSERT INTO alumnos(apellido, nombre, dni, fechaNacimiento, estado) VALUES (?,?,?,?,?)";
         try{
             PreparedStatement ps = conn.prepareStatement(q, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, a.getApellido());
             ps.setString(2, a.getNombre());
             ps.setString(3, a.getDni());
             ps.setDate(4, Date.valueOf(a.getFechaNacimiento()));
+            ps.setInt(5, 1);
             if( ps.executeUpdate() > 0 ){
                 JOptionPane.showMessageDialog(null, "Alumno agregado exitosamente.");
             } else {
