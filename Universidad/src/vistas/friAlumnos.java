@@ -257,7 +257,7 @@ public class friAlumnos extends javax.swing.JInternalFrame {
             LocalDate lc = al.getFechaNacimiento();
            Date date = (Date) Date.valueOf(lc);
             jdcFechaNacimiento.setDate(date);
-            ckEstado.setEnabled(true);
+            ckEstado.setEnabled(false);
             ckEstado.setSelected(al.getEstado()==1);
             btActualizar.setEnabled(true);
             btBorrar.setEnabled(true);  
@@ -270,7 +270,16 @@ public class friAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
-        // TODO add your handling code here:
+        MiConexion con = new MiConexion("jdbc:mysql://localHost/universidad", "root", "");
+        Alumno al= new Alumno();
+        AlumnoData aD= new AlumnoData(con);
+        aD.eliminarAlumno(aD.obtenerAlumnoXDni(jTFDni.getText()).getIdAlumno());
+        al=aD.obtenerAlumno(aD.obtenerAlumnoXDni(jTFDni.getText()).getIdAlumno());
+        if (al.getEstado()==0){
+            JOptionPane.showMessageDialog(this, "Se borro con exito.");
+        }else{
+            JOptionPane.showMessageDialog(this, "no fue borrado.");
+        }
     }//GEN-LAST:event_btBorrarActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
@@ -307,11 +316,18 @@ String val="[a-zA-Z]*";
         MiConexion con = new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
         AlumnoData aD= new AlumnoData(con);
         Alumno al= new Alumno();
-        al=aD.obtenerAlumnoXDni(jTFDni.getText());
+        al.setIdAlumno(aD.obtenerAlumnoXDni(jTFDni.getText()).getIdAlumno());
+        al.setNombre(jTFNombre.getText());
+        al.setApellido(jTFApellido.getText());
+        al.setDni(jTFDni.getText());
+        java.util.Date sfecha = jdcFechaNacimiento.getDate();
+        LocalDate fechaNac = sfecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        al.setFechaNacimiento(fechaNac);
         aD.actualizarAlumno(al);
+        ckEstado.setEnabled(false);
         
     }//GEN-LAST:event_btActualizarActionPerformed
-///////////// revisar.
+
     private void jTFNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNombreFocusLost
          String val="[a-zA-Z]*";
         if(!jTFNombre.getText().matches(val)){
