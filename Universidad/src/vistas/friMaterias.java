@@ -15,13 +15,16 @@ import persistencia.MiConexion;
  * @author PUESTO-A1
  */
 public class friMaterias extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form friMaterias
-     */
+        private MiConexion con;
+        private Materia mat;
+        private MateriaData mD;
+   
     public friMaterias() {
         initComponents();
         llenarComboBox();
+        con= new MiConexion("jdbc:mysql://localhost/universidad","root","");
+        mat= new Materia();
+        mD= new MateriaData(con);
     }
 
     /**
@@ -221,9 +224,9 @@ public class friMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-        MiConexion con= new MiConexion("jdbc:mysql://localhost/universidad","root","");
-        Materia mat= new Materia();
-        MateriaData mD= new MateriaData(con);
+     //   MiConexion con= new MiConexion("jdbc:mysql://localhost/universidad","root","");
+       // Materia mat= new Materia();
+       // MateriaData mD= new MateriaData(con);
         try {
             Integer id= Integer.parseInt(jTFIdMateria.getText());
             mat=mD.obtenerMateria(id);
@@ -259,9 +262,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btLimpiarActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-        MiConexion con= new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
-        MateriaData mD= new MateriaData(con);
-        Materia mat= new Materia();
+        
         int est=0;
         mat.setNombre(jTFNombre.getText());
         mat.setPeriodo(cbPeriodo.getSelectedIndex()+1);
@@ -279,9 +280,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
-       MiConexion con= new MiConexion("jdbc:mysql://localhost/universidad","root","");
-       MateriaData mD= new MateriaData(con);
-       Materia mat= new Materia();
+      
        mat.setNombre(jTFNombre.getText());
        mat.setPeriodo(cbPeriodo.getSelectedIndex()+1);
        mat.setIdMateria(Integer.parseInt(jTFIdMateria.getText()));
@@ -291,8 +290,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btActualizarActionPerformed
 
     private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
-        MiConexion con = new MiConexion("jdbc:mysql://localhost/universidad","root","");
-        MateriaData mD= new MateriaData(con);
+       
         int id;
         id=Integer.parseInt(jTFIdMateria.getText());
         mD.eliminarMateria(id);

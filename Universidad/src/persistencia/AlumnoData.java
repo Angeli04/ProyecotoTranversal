@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -109,7 +111,7 @@ public class AlumnoData {
     public List<Alumno> listarAlumnos(){
         Alumno a;
         List<Alumno> alumnos = new ArrayList<>();
-        String q = "SELECT * FROM alumnos WHERE estado = 1";
+        String q = "SELECT * FROM alumnos WHERE estado = 1 order by apellido";
         
         try{
             PreparedStatement ps = conn.prepareStatement(q);
@@ -119,7 +121,7 @@ public class AlumnoData {
                 a.setApellido(rs.getString("apellido"));
                 a.setNombre(rs.getString("nombre"));
                 a.setDni(rs.getString("dni"));
-                a.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                a.setFechaNacimiento( rs.getDate("fechaNacimiento").toLocalDate());
                 a.setEstado(rs.getInt("estado"));
                 a.setIdAlumno(rs.getInt("idAlumno"));
                 alumnos.add(a);

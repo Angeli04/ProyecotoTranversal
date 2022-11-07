@@ -56,7 +56,7 @@ public class InscripcionData {
             //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en guardarInscripcion.");
         }
-    }
+    } // Realiza una inscripcion.
         
     public Inscripcion obtenerInscripcion(Alumno a, Materia m){
         Inscripcion i = null;
@@ -110,29 +110,24 @@ public class InscripcionData {
         }
     }
     
-    public List<Inscripcion> obtenerMateriasInscriptas(Alumno a){
-        Inscripcion i = null;
+    public List<Materia> obtenerMateriasInscriptas(Alumno a){
+       // Inscripcion i = null;
         Materia m = null;
-        List<Inscripcion> lista = new ArrayList<>();
+        List<Materia> lista = new ArrayList<>();
         try{
-            String q = "SELECT materias.*, inscripciones.notaFinal "
-                    + "FROM inscripciones "
-                    + "JOIN materias ON materias.idMateria = inscripciones.idMateria "
-                    + "WHERE inscripciones.idAlumno = ?";
+            String q = "SELECT * FROM inscripciones WHERE idAlumno= ?";
             PreparedStatement ps = conn.prepareStatement(q);
             ps.setInt(1, a.getIdAlumno());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                i = new Inscripcion();
-                i.setAlumno(a);
+               // i = new Inscripcion();
+              //  i.setAlumno(a);
                 m = new Materia();
                 m.setNombre(rs.getString("nombre"));
                 m.setPeriodo(rs.getInt("periodo"));
                 m.setEstado(rs.getInt("estado"));
                 m.setIdMateria(rs.getInt("idMateria"));                
-                i.setMateria(m);
-                i.setNotaFinal(rs.getFloat("notaFinal"));
-                lista.add(i);
+                lista.add(m);
             }
             rs.close();
             ps.close();

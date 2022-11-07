@@ -41,16 +41,40 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Inscripciones"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMIInscripciones">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Formulario de Inscripciones"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIInscripcionesActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMCargarNotas">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Carga de Notas"/>
+            <Property name="text" type="java.lang.String" value="Notas"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMICargarNotas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cargar Notas"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMConsultas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Consultas"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consultar alumnos por materia"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
