@@ -5,7 +5,7 @@
  */
 package persistencia;
 
-import com.sun.istack.internal.logging.Logger;
+//import com.sun.istack.internal.logging.Logger;
 import entidades.Materia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,6 +26,9 @@ public class MateriaData {
 
     public MateriaData(MiConexion conn) {
         this.conn = conn.buscarConexion();
+    }
+    public MateriaData(){
+        conn= MiConexion.buscarConexion();
     }
     
     public void guardarMateria(Materia m){

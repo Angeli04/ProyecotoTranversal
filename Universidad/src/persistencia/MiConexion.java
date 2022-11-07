@@ -5,22 +5,23 @@
  */
 package persistencia;
 
-import com.sun.istack.internal.logging.Logger;
+//import com.sun.istack.internal.logging.Logger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author PUESTO-A1
  */
 public class MiConexion {
-    private String url;
-    private String usuario;
-    private String pass;
+    private static String url="jdbc:mysql://localhost/universidad";
+    private static String usuario="root";
+    private static String pass="";
                             
-    private Connection conn;
+    private static Connection conn;
 
     public MiConexion(String url, String usuario, String pass) {
         this.url = url;
@@ -28,15 +29,20 @@ public class MiConexion {
         this.pass = pass;
     }
     
-    public Connection buscarConexion(){
+    public static Connection buscarConexion(){
         if(conn == null){
-            try{
+            
+            try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 conn = DriverManager.getConnection(url, usuario, pass);
-            } catch(SQLException | ClassNotFoundException ex){
-                Logger.getLogger(MiConexion.class).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException|SQLException ex) {
+                Logger.getLogger(MiConexion.class.getName()).log(Level.SEVERE, null, ex);
+           
             }
-        }
+           
+              
+            }
+        
         return conn;
     }
                                     

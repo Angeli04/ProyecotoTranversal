@@ -5,7 +5,7 @@
  */
 package persistencia;
 
-import com.sun.istack.internal.logging.Logger;
+//import com.sun.istack.internal.logging.Logger;
 import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,6 +31,9 @@ public class InscripcionData {
     public InscripcionData(MiConexion conn) {
         this.mCon = conn;
         this.conn = conn.buscarConexion();
+    }
+    public InscripcionData(){
+        conn=MiConexion.buscarConexion();
     }
     
     public void guardarInscripcion(Inscripcion i){
@@ -137,7 +141,7 @@ public class InscripcionData {
             rs.close();
             ps.close();
         } catch(SQLException ex) {
-            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerMateriasInscriptas.");
         }
         return lista;
@@ -201,7 +205,8 @@ public class InscripcionData {
             rs.close();
             ps.close();
         } catch(SQLException ex) {
-            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+           
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerAlumnosInscriptos.");
         }
         return lista;
