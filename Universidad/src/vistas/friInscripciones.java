@@ -7,6 +7,13 @@ package vistas;
 
 import entidades.Alumno;
 import entidades.Materia;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import persistencia.AlumnoData;
+import persistencia.InscripcionData;
 
 /**
  *
@@ -14,11 +21,23 @@ import entidades.Materia;
  */
 public class friInscripciones extends javax.swing.JInternalFrame {
 
+    private AlumnoData alumnoData;
+    private ArrayList<Alumno> alumnos;
+    private InscripcionData inscripcionData;
+    private DefaultTableModel modelo;
+   // private AlumnoData listaAlumnos;
+    
     /**
      * Creates new form friInscripciones
      */
     public friInscripciones() {
         initComponents();
+        modelo = new DefaultTableModel();
+        alumnoData= new AlumnoData();
+        inscripcionData= new InscripcionData();
+        alumnos = (ArrayList)alumnoData.listarAlumnos();
+        cargaComboBox();
+        
     }
 
     /**
@@ -31,78 +50,69 @@ public class friInscripciones extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbTitulo1 = new javax.swing.JLabel();
+        lbAlumno = new javax.swing.JLabel();
         cbAlumnos = new javax.swing.JComboBox<>();
-        cbMaterias = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btInscribir = new javax.swing.JButton();
+        btSalir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbInscripciones = new javax.swing.JTable();
+        lbTitulo2 = new javax.swing.JLabel();
+        btAnular = new javax.swing.JButton();
+        rbInscriptas = new javax.swing.JRadioButton();
+        rbNoInscriptas = new javax.swing.JRadioButton();
+
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(34, 39, 46));
         jPanel1.setForeground(new java.awt.Color(173, 186, 199));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(173, 186, 199));
-        jLabel1.setText("Formulario de inscripción");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        lbTitulo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lbTitulo1.setForeground(new java.awt.Color(173, 186, 199));
+        lbTitulo1.setText("Formulario de inscripción");
+        jPanel1.add(lbTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(173, 186, 199));
-        jLabel2.setText("Alumno");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 200, 30));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(173, 186, 199));
-        jLabel3.setText("Materia");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 200, 30));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(173, 186, 199));
-        jLabel4.setText("Nota final");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 200, 30));
+        lbAlumno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbAlumno.setForeground(new java.awt.Color(173, 186, 199));
+        lbAlumno.setText("Alumno");
+        jPanel1.add(lbAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 200, 30));
 
         cbAlumnos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cbAlumnos.setForeground(new java.awt.Color(173, 186, 199));
-        cbAlumnos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbAlumnosActionPerformed(evt);
-            }
-        });
         jPanel1.add(cbAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
 
-        cbMaterias.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cbMaterias.setForeground(new java.awt.Color(173, 186, 199));
-        jPanel1.add(cbMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 200, 30));
-
-        jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox3.setForeground(new java.awt.Color(173, 186, 199));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 200, 30));
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(173, 186, 199));
-        jButton1.setText("Guardar");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btInscribir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btInscribir.setForeground(new java.awt.Color(173, 186, 199));
+        btInscribir.setText("Inscribir");
+        btInscribir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btInscribir.setContentAreaFilled(false);
+        btInscribir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btInscribirActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 100, 30));
+        jPanel1.add(btInscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 100, 30));
 
-<<<<<<< Updated upstream
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(173, 186, 199));
-        jButton2.setText("Salir");
-        jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
-        jButton2.setContentAreaFilled(false);
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 100, 30));
-=======
+        btSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btSalir.setForeground(new java.awt.Color(173, 186, 199));
+        btSalir.setText("Salir");
+        btSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
+        btSalir.setContentAreaFilled(false);
+        jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 530, 100, 30));
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(720, 402));
+
+        tbInscripciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
             }
         ));
         jScrollPane1.setViewportView(tbInscripciones);
@@ -142,60 +152,130 @@ public class friInscripciones extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(rbNoInscriptas, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
->>>>>>> Stashed changes
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+                                           
+                                        
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-<<<<<<< Updated upstream
-    }//GEN-LAST:event_jButton1ActionPerformed
-=======
+    private void cbAlumnosActionPerformed(java.awt.event.ActionEvent evt) {                                          
+     
+    }                                         
+    
+    private void btInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInscribirActionPerformed
+        modelo.getValueAt(ERROR, WIDTH)
     }//GEN-LAST:event_btInscribirActionPerformed
 
     private void rbNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNoInscriptasActionPerformed
-         rbInscriptas.setSelected(false);
-       
+             rbInscriptas.setSelected(false);
+       cargarTablaNoInscripta();
        btAnular.setEnabled(true);
       btInscribir.setEnabled(false);
      
     }//GEN-LAST:event_rbNoInscriptasActionPerformed
 
     private void rbInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInscriptasActionPerformed
-       rbNoInscriptas.setSelected(false);
-       
+          rbNoInscriptas.setSelected(false);
+       cargarTablaNoInscripta();
        btAnular.setEnabled(false);
       btInscribir.setEnabled(true);
-     
     }//GEN-LAST:event_rbInscriptasActionPerformed
-
-    private void cbAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAlumnosActionPerformed
-     
-    }//GEN-LAST:event_cbAlumnosActionPerformed
->>>>>>> Stashed changes
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAnular;
+    private javax.swing.JButton btInscribir;
+    private javax.swing.JButton btSalir;
     private javax.swing.JComboBox<Alumno> cbAlumnos;
-    private javax.swing.JComboBox<Materia> cbMaterias;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbAlumno;
+    private javax.swing.JLabel lbTitulo1;
+    private javax.swing.JLabel lbTitulo2;
+    private javax.swing.JRadioButton rbInscriptas;
+    private javax.swing.JRadioButton rbNoInscriptas;
+    private javax.swing.JTable tbInscripciones;
     // End of variables declaration//GEN-END:variables
+
+//    public void cargarAlumnos(){
+//        listaAlumnos = new AlumnoData();
+//    }
+
+    private void borrarFilasTabla() {
+        if (modelo != null) {
+            int a = modelo.getRowCount() - 1;
+
+            for (int i = a; i >= 0; i--) {
+                modelo.removeRow(i);
+            }
+        }
+        //modelo.setNumRows(0);
+    }
+    
+    private void armarCabeceraTabla() {
+        //titulos de las columnas
+        ArrayList<Object> columnas = new ArrayList<Object>();
+        columnas.add("ID");
+        columnas.add("Nombre");
+        columnas.add("Año");
+        //recorro el array y uso eso de titulos
+        for (Object it : columnas) {
+            modelo.addColumn(it);
+        }
+        //se lo cargo a la tabla
+        tbInscripciones.setModel(modelo);
+
+    }
+    private void cargarTablaNoInscripta(){
+        borrarFilasTabla();
+        Alumno elegido= (Alumno) cbAlumnos.getSelectedItem();
+        if(elegido!=null){
+           ArrayList<Materia> listaMateria= (ArrayList)inscripcionData.obtenerMateriasNoInscriptas(elegido);
+            for (Materia materia : listaMateria) {
+                modelo.addRow(new Object[]{ materia.getIdMateria(),materia.getNombre(),materia.getPeriodo()});
+                
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un alumno");
+        }
+        
+    }
+    private void cargarTablaInscripta(){
+        borrarFilasTabla();
+         Alumno elegido= (Alumno) cbAlumnos.getSelectedItem();
+        if(elegido!=null){
+           ArrayList<Materia> listaMateria= (ArrayList)inscripcionData.obtenerMateriasInscriptas(elegido);
+            for (Materia materia : listaMateria) {
+                modelo.addRow(new Object[]{ materia.getIdMateria(),materia.getNombre(),materia.getPeriodo()});
+                
+            }
+    }else{
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un alumno");
+        }
+    }
+    private void cargaComboBox() {
+       Collections.sort(alumnos, new Comparator<Alumno>() {
+           @Override
+           public int compare(Alumno o1, Alumno o2) {
+               return o1.getApellido().compareTo(o2.getApellido());
+           }
+       });
+        for (Alumno alumno : alumnos) {
+            cbAlumnos.addItem(alumno);
+            
+        }
+        
+    }
+
+    
 }
