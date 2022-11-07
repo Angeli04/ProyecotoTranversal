@@ -6,6 +6,7 @@
 package vistas;
 
 import entidades.Alumno;
+import entidades.Inscripcion;
 import entidades.Materia;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -129,6 +130,11 @@ public class friInscripciones extends javax.swing.JInternalFrame {
         btAnular.setText("Anular Inscripcion");
         btAnular.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(173, 186, 199)));
         btAnular.setContentAreaFilled(false);
+        btAnular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAnularActionPerformed(evt);
+            }
+        });
         jPanel1.add(btAnular, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, 200, 30));
 
         rbInscriptas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -174,7 +180,20 @@ public class friInscripciones extends javax.swing.JInternalFrame {
     }                                         
     
     private void btInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInscribirActionPerformed
-        modelo.getValueAt(ERROR, WIDTH)
+        int fila= modelo.getRowCount();
+        if (fila!=-1){
+            int idMat=(Integer)modelo.getValueAt(fila, 0);
+            int periodo =(Integer) modelo.getValueAt(fila, 2);
+            String nombre=(String) modelo.getValueAt(fila,1);
+            Materia selec=new Materia(nombre,periodo,1);
+            selec.setIdMateria(idMat);
+            Alumno a= (Alumno) cbAlumnos.getSelectedItem();
+            Inscripcion ins= new Inscripcion(a,selec,-1);
+            inscripcionData.guardarInscripcion(ins);
+            
+        }else{
+            JOptionPane.showMessageDialog(this,"No hay materia seleccionada");
+        }
     }//GEN-LAST:event_btInscribirActionPerformed
 
     private void rbNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNoInscriptasActionPerformed
@@ -191,6 +210,23 @@ public class friInscripciones extends javax.swing.JInternalFrame {
        btAnular.setEnabled(false);
       btInscribir.setEnabled(true);
     }//GEN-LAST:event_rbInscriptasActionPerformed
+
+    private void btAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnularActionPerformed
+   int fila= modelo.getRowCount();
+        if (fila!=-1){
+            int idMat=(Integer)modelo.getValueAt(fila, 0);
+            int periodo =(Integer) modelo.getValueAt(fila, 2);
+            String nombre=(String) modelo.getValueAt(fila,1);
+            Materia selec=new Materia(nombre,periodo,1);
+            selec.setIdMateria(idMat);
+            Alumno a= (Alumno) cbAlumnos.getSelectedItem();
+            Inscripcion ins= new Inscripcion(a,selec,-1);
+            inscripcionData.eliminarInscripcion(a, selec);
+            
+        }else{
+            JOptionPane.showMessageDialog(this,"No hay materia seleccionada");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btAnularActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAnular;
