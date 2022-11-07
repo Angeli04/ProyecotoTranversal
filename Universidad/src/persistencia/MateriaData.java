@@ -5,7 +5,6 @@
  */
 package persistencia;
 
-import com.sun.istack.internal.logging.Logger;
 import entidades.Materia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,24 +27,25 @@ public class MateriaData {
     }
     
     public void guardarMateria(Materia m){
-        String q = "INSERT INTO materias(nombre, periodo) VALUES (?,?)";
+        String q = "INSERT INTO materias(nombre, periodo, estado) VALUES (?,?,?)";
         
         try{
             PreparedStatement ps = conn.prepareStatement(q, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, m.getNombre());
             ps.setInt(2, m.getPeriodo());
-            ps.executeUpdate();
+            ps.setInt(3, m.getEstado());
+            ps.execute();
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
                 m.setIdMateria(rs.getInt(1));
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo obtener el ID.");
+                JOptionPane.showMessageDialog(null, "No se pudo obtener el ID1.");
             }
             ps.close();
             
         } catch(SQLException ex) {
             //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "No se pudo obtener el ID.");
+           JOptionPane.showMessageDialog(null, ex);
         }
     } // guarda una materia nueva.
     
@@ -54,7 +53,7 @@ public class MateriaData {
         Materia m = null;
 
         try{
-            String q = "SELECT * FROM materias WHERE materias.idMateria= ?";
+            String q = "SELECT * FROM materias WHERE materias.idMateria= ? AND estado=1";
             PreparedStatement ps = conn.prepareStatement(q);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -115,7 +114,7 @@ public class MateriaData {
     } // update de materia
     
     public void eliminarMateria(int id){
-        String q = "DELETE FROM materias WHERE idMateria= ?";
+        String q = "UPDATE materias SET estado = 0 WHERE idMateria = ?";
         
         try{
             PreparedStatement ps = conn.prepareStatement(q);

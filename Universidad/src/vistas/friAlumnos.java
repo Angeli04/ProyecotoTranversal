@@ -7,9 +7,6 @@ package vistas;
 
 import entidades.Alumno;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.JOptionPane;
@@ -25,12 +22,8 @@ public class friAlumnos extends javax.swing.JInternalFrame {
     /**
      * Creates new form friAlumnos
      */
-   // AlumnoData aD;
     public friAlumnos() {
         initComponents();
-        
-         
-    //   aD= new AlumnoData();
     }
 
     /**
@@ -99,11 +92,6 @@ public class friAlumnos extends javax.swing.JInternalFrame {
                 jTFApellidoFocusLost(evt);
             }
         });
-        jTFApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFApellidoActionPerformed(evt);
-            }
-        });
         jPanel1.add(jTFApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
 
         jTFNombre.setBackground(new java.awt.Color(34, 39, 46));
@@ -134,11 +122,6 @@ public class friAlumnos extends javax.swing.JInternalFrame {
         ckEstado.setText("Activo");
         ckEstado.setContentAreaFilled(false);
         ckEstado.setEnabled(false);
-        ckEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckEstadoActionPerformed(evt);
-            }
-        });
         jPanel1.add(ckEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 80, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -234,14 +217,6 @@ public class friAlumnos extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTFApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFApellidoActionPerformed
-
-    private void ckEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ckEstadoActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         

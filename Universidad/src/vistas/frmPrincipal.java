@@ -5,8 +5,7 @@
  */
 package vistas;
 
-import entidades.Alumno;
-import java.util.ArrayList;
+
 
 /**
  *
@@ -36,6 +35,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMAlumnos = new javax.swing.JMenu();
         jmAlumno = new javax.swing.JMenuItem();
         jMMaterias = new javax.swing.JMenu();
+        jmMateria = new javax.swing.JMenuItem();
         jMInscripciones = new javax.swing.JMenu();
         jMCargarNotas = new javax.swing.JMenu();
         jMConsultas = new javax.swing.JMenu();
@@ -74,6 +74,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMAlumnos);
 
         jMMaterias.setText("Materias");
+
+        jmMateria.setText("Materia");
+        jmMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmMateriaActionPerformed(evt);
+            }
+        });
+        jMMaterias.add(jmMateria);
+
         jMenuBar1.add(jMMaterias);
 
         jMInscripciones.setText("Inscripciones");
@@ -108,10 +117,18 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void jmAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAlumnoActionPerformed
         dpPrincipal.removeAll();
         dpPrincipal.repaint();
-        friAlumnos ventana= new friAlumnos();
-       dpPrincipal.add(ventana);
-       ventana.setVisible(true);
+        friAlumnos ventAlumno= new friAlumnos();
+       dpPrincipal.add(ventAlumno);
+       ventAlumno.setVisible(true);
     }//GEN-LAST:event_jmAlumnoActionPerformed
+
+    private void jmMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMateriaActionPerformed
+        dpPrincipal.removeAll();
+        dpPrincipal.repaint();
+        friMaterias ventMateria= new friMaterias();
+        dpPrincipal.add(ventMateria);
+        ventMateria.setVisible(true);
+    }//GEN-LAST:event_jmMateriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,5 +172,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMMaterias;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jmAlumno;
+    private javax.swing.JMenuItem jmMateria;
     // End of variables declaration//GEN-END:variables
 }
