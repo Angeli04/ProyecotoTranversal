@@ -67,6 +67,11 @@ public class friInscripciones extends javax.swing.JInternalFrame {
 
         cbAlumnos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cbAlumnos.setForeground(new java.awt.Color(173, 186, 199));
+        cbAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAlumnosActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
 
         cbMaterias.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -90,12 +95,54 @@ public class friInscripciones extends javax.swing.JInternalFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 100, 30));
 
+<<<<<<< Updated upstream
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(173, 186, 199));
         jButton2.setText("Salir");
         jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
         jButton2.setContentAreaFilled(false);
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 100, 30));
+=======
+            }
+        ));
+        jScrollPane1.setViewportView(tbInscripciones);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 720, 260));
+
+        lbTitulo2.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        lbTitulo2.setForeground(new java.awt.Color(173, 186, 199));
+        lbTitulo2.setText("Listado de materias");
+        jPanel1.add(lbTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 320, 50));
+
+        btAnular.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btAnular.setForeground(new java.awt.Color(173, 186, 199));
+        btAnular.setText("Anular Inscripcion");
+        btAnular.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(173, 186, 199)));
+        btAnular.setContentAreaFilled(false);
+        jPanel1.add(btAnular, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, 200, 30));
+
+        rbInscriptas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        rbInscriptas.setForeground(new java.awt.Color(173, 186, 199));
+        rbInscriptas.setText("Materias inscriptas");
+        rbInscriptas.setContentAreaFilled(false);
+        rbInscriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbInscriptasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbInscriptas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+
+        rbNoInscriptas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        rbNoInscriptas.setForeground(new java.awt.Color(173, 186, 199));
+        rbNoInscriptas.setText("Materias no inscriptas");
+        rbNoInscriptas.setContentAreaFilled(false);
+        rbNoInscriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbNoInscriptasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbNoInscriptas, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+>>>>>>> Stashed changes
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,7 +160,31 @@ public class friInscripciones extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+<<<<<<< Updated upstream
     }//GEN-LAST:event_jButton1ActionPerformed
+=======
+    }//GEN-LAST:event_btInscribirActionPerformed
+
+    private void rbNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNoInscriptasActionPerformed
+         rbInscriptas.setSelected(false);
+       
+       btAnular.setEnabled(true);
+      btInscribir.setEnabled(false);
+     
+    }//GEN-LAST:event_rbNoInscriptasActionPerformed
+
+    private void rbInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInscriptasActionPerformed
+       rbNoInscriptas.setSelected(false);
+       
+       btAnular.setEnabled(false);
+      btInscribir.setEnabled(true);
+     
+    }//GEN-LAST:event_rbInscriptasActionPerformed
+
+    private void cbAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAlumnosActionPerformed
+     
+    }//GEN-LAST:event_cbAlumnosActionPerformed
+>>>>>>> Stashed changes
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Alumno> cbAlumnos;
