@@ -9,8 +9,11 @@ import entidades.Alumno;
 import entidades.Materia;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.AlumnoData;
+import persistencia.InscripcionData;
 
 /**
  *
@@ -18,8 +21,11 @@ import persistencia.AlumnoData;
  */
 public class friInscripciones extends javax.swing.JInternalFrame {
 
+    private AlumnoData alumnoData;
+    private ArrayList<Alumno> alumnos;
+    private InscripcionData inscripcionData;
     private DefaultTableModel modelo;
-    AlumnoData listaAlumnos;
+   // private AlumnoData listaAlumnos;
     
     /**
      * Creates new form friInscripciones
@@ -27,6 +33,11 @@ public class friInscripciones extends javax.swing.JInternalFrame {
     public friInscripciones() {
         initComponents();
         modelo = new DefaultTableModel();
+        alumnoData= new AlumnoData();
+        inscripcionData= new InscripcionData();
+        alumnos = (ArrayList)alumnoData.listarAlumnos();
+        cargaComboBox();
+        
     }
 
     /**
@@ -124,6 +135,11 @@ public class friInscripciones extends javax.swing.JInternalFrame {
         rbInscriptas.setForeground(new java.awt.Color(173, 186, 199));
         rbInscriptas.setText("Materias inscriptas");
         rbInscriptas.setContentAreaFilled(false);
+        rbInscriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbInscriptasActionPerformed(evt);
+            }
+        });
         jPanel1.add(rbInscriptas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         rbNoInscriptas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -150,14 +166,31 @@ public class friInscripciones extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+                                           
+                                        
 
+    private void cbAlumnosActionPerformed(java.awt.event.ActionEvent evt) {                                          
+     
+    }                                         
+    
     private void btInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInscribirActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_btInscribirActionPerformed
 
     private void rbNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNoInscriptasActionPerformed
-        // TODO add your handling code here:
+             rbInscriptas.setSelected(false);
+       cargarTablaNoInscripta();
+       btAnular.setEnabled(true);
+      btInscribir.setEnabled(false);
+     
     }//GEN-LAST:event_rbNoInscriptasActionPerformed
+
+    private void rbInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInscriptasActionPerformed
+          rbNoInscriptas.setSelected(false);
+       cargarTablaNoInscripta();
+       btAnular.setEnabled(false);
+      btInscribir.setEnabled(true);
+    }//GEN-LAST:event_rbInscriptasActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAnular;
@@ -174,9 +207,9 @@ public class friInscripciones extends javax.swing.JInternalFrame {
     private javax.swing.JTable tbInscripciones;
     // End of variables declaration//GEN-END:variables
 
-    public void cargarAlumnos(){
-        listaAlumnos = new AlumnoData();
-    }
+//    public void cargarAlumnos(){
+//        listaAlumnos = new AlumnoData();
+//    }
 
     private void borrarFilasTabla() {
         if (modelo != null) {
@@ -202,6 +235,46 @@ public class friInscripciones extends javax.swing.JInternalFrame {
         //se lo cargo a la tabla
         tbInscripciones.setModel(modelo);
 
+    }
+    private void cargarTablaNoInscripta(){
+        borrarFilasTabla();
+        Alumno elegido= (Alumno) cbAlumnos.getSelectedItem();
+        if(elegido!=null){
+           ArrayList<Materia> listaMateria= (ArrayList)inscripcionData.obtenerMateriasNoInscriptas(elegido);
+            for (Materia materia : listaMateria) {
+                modelo.addRow(new Object[]{ materia.getIdMateria(),materia.getNombre(),materia.getPeriodo()});
+                
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un alumno");
+        }
+        
+    }
+    private void cargarTablaInscripta(){
+        borrarFilasTabla();
+         Alumno elegido= (Alumno) cbAlumnos.getSelectedItem();
+        if(elegido!=null){
+           ArrayList<Materia> listaMateria= (ArrayList)inscripcionData.obtenerMateriasInscriptas(elegido);
+            for (Materia materia : listaMateria) {
+                modelo.addRow(new Object[]{ materia.getIdMateria(),materia.getNombre(),materia.getPeriodo()});
+                
+            }
+    }else{
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un alumno");
+        }
+    }
+    private void cargaComboBox() {
+       Collections.sort(alumnos, new Comparator<Alumno>() {
+           @Override
+           public int compare(Alumno o1, Alumno o2) {
+               return o1.getApellido().compareTo(o2.getApellido());
+           }
+       });
+        for (Alumno alumno : alumnos) {
+            cbAlumnos.addItem(alumno);
+            
+        }
+        
     }
 
     
