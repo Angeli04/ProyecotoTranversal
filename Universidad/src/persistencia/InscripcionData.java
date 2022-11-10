@@ -5,7 +5,6 @@
  */
 package persistencia;
 
-import com.sun.istack.internal.logging.Logger;
 import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
@@ -195,7 +194,7 @@ public class InscripcionData {
             rs.close();
             ps.close();
         } catch(SQLException ex) {
-            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerAlumnosInscriptos.");
         }
         return lista;

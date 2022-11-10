@@ -5,7 +5,6 @@
  */
 package persistencia;
 
-import com.sun.istack.internal.logging.Logger;
 import entidades.Alumno;
 import java.sql.Connection;
 import java.sql.Date;
@@ -54,7 +53,7 @@ public class AlumnoData {
             rs.close();
             ps.close();
         } catch(SQLException ex) {
-            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en guardarAlumno.");
         }
     }
@@ -128,7 +127,7 @@ public class AlumnoData {
             }
             ps.close();
         } catch(SQLException ex) {
-            Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en listarAlumnos.");
         }
         return alumnos;

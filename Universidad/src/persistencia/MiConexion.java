@@ -5,11 +5,9 @@
  */
 package persistencia;
 
-import com.sun.istack.internal.logging.Logger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
 
 /**
