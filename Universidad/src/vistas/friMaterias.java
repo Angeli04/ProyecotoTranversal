@@ -6,6 +6,7 @@
 package vistas;
 
 import entidades.Materia;
+import javax.swing.JOptionPane;
 import persistencia.MateriaData;
 
 /**
@@ -174,6 +175,11 @@ public class friMaterias extends javax.swing.JInternalFrame {
         btBuscar.setText("Buscar");
         btBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
         btBuscar.setContentAreaFilled(false);
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -209,8 +215,14 @@ public class friMaterias extends javax.swing.JInternalFrame {
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
      
         String nombre= jTFNombre.getText();
-        int periodo= (Integer) jCmbBPeriodo.getSelectedItem();
+        int periodo=12; 
+       try{ periodo= Integer.parseInt((String)jCmbBPeriodo.getSelectedItem());
         //String nombre, int periodo, int estado
+         JOptionPane.showMessageDialog(this,"si lo casteo");
+       }catch (Exception e){
+           JOptionPane.showMessageDialog(this,"no lo casteo");
+       }
+        
         int estado;
         if (jCBEstado.isEnabled()){
             estado=1;
@@ -218,9 +230,28 @@ public class friMaterias extends javax.swing.JInternalFrame {
             estado=0;
         }
         Materia materia=new Materia(nombre, periodo,estado);
+        System.out.println(materia);
         materiaData.guardarMateria(materia);
-      
+        jTFIdMateria.setText(String.valueOf(materia.getIdMateria()));
     }//GEN-LAST:event_btGuardarActionPerformed
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        String id=jTFIdMateria.getText();
+        if (id.equals("")){
+            JOptionPane.showMessageDialog(this, "Debe elegir un id de la materia");
+            
+        }else{
+          Materia a= materiaData.obtenerMateria(Integer.parseInt(id));
+           jTFNombre.setText(a.getNombre());
+           if (a.getEstado()==1){
+               jCBEstado.setSelected(true);
+           }else{
+               jCBEstado.setSelected(false);
+           }
+           
+            jCmbBPeriodo.setSelectedItem(a.getPeriodo());
+        }
+    }//GEN-LAST:event_btBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

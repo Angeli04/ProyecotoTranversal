@@ -15,6 +15,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+//import java.util.logging.Level;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,32 +26,40 @@ import javax.swing.JOptionPane;
 public class MateriaData {
     private Connection conn = null;
 
-    public MateriaData(MiConexion conn) {
-        this.conn = conn.buscarConexion();
-    }
+//    public MateriaData(MiConexion conn) {
+//        this.conn = conn.buscarConexion();
+//    }
     public MateriaData(){
-        conn= MiConexion.buscarConexion();
+        conn = MiConexion.buscarConexion();
     }
     
     public void guardarMateria(Materia m){
-        String q = "INSERT INTO materias(nombre, periodo) VALUES (?,?)";
+       String q = "INSERT INTO materias (nombre, periodo, estado) VALUES (?, ?, ?)";
         
-        try{
+        
+     
+    try{
             PreparedStatement ps = conn.prepareStatement(q, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, m.getNombre());
             ps.setInt(2, m.getPeriodo());
-            ps.executeUpdate();
+            ps.setInt(3, m.getEstado());
+            JOptionPane.showMessageDialog(null, "carga");
+            System.out.println(m);
+            ps.executeLargeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
                 m.setIdMateria(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Materia cargada correctamene");
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo obtener el ID.");
             }
+            
+            
             ps.close();
             
         } catch(SQLException ex) {
-            //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "No se pudo obtener el ID.");
+            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error en la sentencia sql.");
         }
     }
     

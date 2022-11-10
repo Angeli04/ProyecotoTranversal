@@ -48,7 +48,7 @@ public class Universidad {
     private void conectar(){
         conn = new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
         alumnoData = new AlumnoData(conn);
-        materiaData = new MateriaData(conn);
+        //materiaData = new MateriaData(conn);
         inscripcionData = new InscripcionData(conn);
         
         //Alumno a = new Alumno("Medina", "Mariano", "30577891", LocalDate.parse("1980-12-30"), 1);
