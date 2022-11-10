@@ -15,6 +15,7 @@ import persistencia.AlumnoData;
 import persistencia.InscripcionData;
 import persistencia.MateriaData;
 import persistencia.MiConexion;
+import vistas.friAlumnos;
 import vistas.frmPrincipal;
 
 /**
@@ -39,18 +40,41 @@ public class Universidad {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+         frmPrincipal vent1= new frmPrincipal();
+        vent1.setVisible(true);
+        friAlumnos vent= new friAlumnos();
+        vent.setVisible(true);
+       
+        
         //frmPrincipal framePrincipal = new frmPrincipal();
         //framePrincipal.setLocationRelativeTo(null);
         //framePrincipal.setVisible(true);
-        new Universidad().conectar();
+//        new Universidad().conectar();
     }
-    
+  /**  
     private void conectar(){
-        conn = new MiConexion();
-        alumnoData = new AlumnoData();
-        materiaData = new MateriaData();
-        inscripcionData = new InscripcionData();
+        conn = new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
+        alumnoData = new AlumnoData(conn);
+        materiaData = new MateriaData(conn);
+        inscripcionData = new InscripcionData(conn);
         
+        //Alumno a = new Alumno("Medina", "Mariano", "30577891", LocalDate.parse("1980-12-30"), 1);
+        //alumnoData.guardarAlumno(a);
+        
+        /*
+        Alumno b = alumnoData.obtenerAlumno(1);
+        System.out.println(b.toString());
+        b.setNombre("Fabricio");
+        b.setApellido("Perez");
+        alumnoData.actualizarAlumno(b);
+        System.out.println(b.toString());
+        
+        Alumno c = alumnoData.obtenerAlumnoXDni("27822898");
+        System.out.println(c.toString());
+        
+        alumnoData.eliminarAlumno(3);
+        */
+        /**
         Scanner sc = new Scanner(System.in);
         int opcion;
         boolean exit = false;
@@ -250,5 +274,5 @@ public class Universidad {
             System.out.println(i.getAlumno().toString() +" nota: "+i.getNotaFinal());
         });
         System.out.println("<-------------------------------------->");        
-    }    
+    }    */
 }

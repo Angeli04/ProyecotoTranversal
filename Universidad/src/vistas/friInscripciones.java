@@ -6,14 +6,12 @@
 package vistas;
 
 import entidades.Alumno;
-import entidades.Materia;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import javax.swing.JOptionPane;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import persistencia.AlumnoData;
 import persistencia.InscripcionData;
+import persistencia.MateriaData;
+import persistencia.MiConexion;
 
 /**
  *
@@ -21,22 +19,23 @@ import persistencia.InscripcionData;
  */
 public class friInscripciones extends javax.swing.JInternalFrame {
 
-    private AlumnoData alumnoData;
-    private ArrayList<Alumno> alumnos;
-    private InscripcionData inscripcionData;
+    private MiConexion con;
+    private AlumnoData aD;
+    private List<Alumno> listaAlumnos;
+    private InscripcionData insDat;
     private DefaultTableModel modelo;
-   // private AlumnoData listaAlumnos;
+    MateriaData matData;
     
-    /**
-     * Creates new form friInscripciones
-     */
     public friInscripciones() {
         initComponents();
-        modelo = new DefaultTableModel();
-        alumnoData= new AlumnoData();
-        inscripcionData= new InscripcionData();
-        alumnos = (ArrayList)alumnoData.listarAlumnos();
-        cargaComboBox();
+        con= new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
+        aD= new AlumnoData(con);
+        listaAlumnos=aD.listarAlumnos();
+        modelo= new DefaultTableModel();
+        matData= new MateriaData(con);
+        cargarAlumnos();
+        
+        
         
     }
 
@@ -50,118 +49,130 @@ public class friInscripciones extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lbTitulo1 = new javax.swing.JLabel();
-        lbAlumno = new javax.swing.JLabel();
+        jlFormularioInscripcion = new javax.swing.JLabel();
+        jlListadoMaterias = new javax.swing.JLabel();
         cbAlumnos = new javax.swing.JComboBox<>();
+        jlAlumno = new javax.swing.JLabel();
+        rbNoInscriptas = new javax.swing.JRadioButton();
+        rbInscriptas = new javax.swing.JRadioButton();
+        btAnularInscripcion = new javax.swing.JButton();
         btInscribir = new javax.swing.JButton();
         btSalir = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbInscripciones = new javax.swing.JTable();
-        lbTitulo2 = new javax.swing.JLabel();
-        btAnular = new javax.swing.JButton();
-        rbInscriptas = new javax.swing.JRadioButton();
-        rbNoInscriptas = new javax.swing.JRadioButton();
-
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtMaterias = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(34, 39, 46));
         jPanel1.setForeground(new java.awt.Color(173, 186, 199));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbTitulo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbTitulo1.setForeground(new java.awt.Color(173, 186, 199));
-        lbTitulo1.setText("Formulario de inscripción");
-        jPanel1.add(lbTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        jlFormularioInscripcion.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jlFormularioInscripcion.setForeground(new java.awt.Color(173, 186, 199));
+        jlFormularioInscripcion.setText("Formulario de inscripción");
+        jPanel1.add(jlFormularioInscripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
-        lbAlumno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lbAlumno.setForeground(new java.awt.Color(173, 186, 199));
-        lbAlumno.setText("Alumno");
-        jPanel1.add(lbAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 200, 30));
+        jlListadoMaterias.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlListadoMaterias.setForeground(new java.awt.Color(173, 186, 199));
+        jlListadoMaterias.setText("Listado de materias");
+        jPanel1.add(jlListadoMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 160, 30));
 
-        cbAlumnos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cbAlumnos.setForeground(new java.awt.Color(173, 186, 199));
-        jPanel1.add(cbAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
-
-        btInscribir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btInscribir.setForeground(new java.awt.Color(173, 186, 199));
-        btInscribir.setText("Inscribir");
-        btInscribir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
-        btInscribir.setContentAreaFilled(false);
-        btInscribir.addActionListener(new java.awt.event.ActionListener() {
+        cbAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btInscribirActionPerformed(evt);
+                cbAlumnosActionPerformed(evt);
             }
         });
-        jPanel1.add(btInscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 100, 30));
+        jPanel1.add(cbAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 290, 30));
 
-        btSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btSalir.setForeground(new java.awt.Color(173, 186, 199));
-        btSalir.setText("Salir");
-        btSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
-        btSalir.setContentAreaFilled(false);
-        jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 530, 100, 30));
+        jlAlumno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlAlumno.setForeground(new java.awt.Color(173, 186, 199));
+        jlAlumno.setText("Alumno");
+        jPanel1.add(jlAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 70, 30));
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(720, 402));
-
-        tbInscripciones.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(tbInscripciones);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 720, 260));
-
-        lbTitulo2.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        lbTitulo2.setForeground(new java.awt.Color(173, 186, 199));
-        lbTitulo2.setText("Listado de materias");
-        jPanel1.add(lbTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 320, 50));
-
-        btAnular.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btAnular.setForeground(new java.awt.Color(173, 186, 199));
-        btAnular.setText("Anular Inscripcion");
-        btAnular.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(173, 186, 199)));
-        btAnular.setContentAreaFilled(false);
-        jPanel1.add(btAnular, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, 200, 30));
-
-        rbInscriptas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rbInscriptas.setForeground(new java.awt.Color(173, 186, 199));
-        rbInscriptas.setText("Materias inscriptas");
-        rbInscriptas.setContentAreaFilled(false);
-        rbInscriptas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbInscriptasActionPerformed(evt);
-            }
-        });
-        jPanel1.add(rbInscriptas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
-
-        rbNoInscriptas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        rbNoInscriptas.setBackground(new java.awt.Color(34, 39, 46));
+        rbNoInscriptas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         rbNoInscriptas.setForeground(new java.awt.Color(173, 186, 199));
-        rbNoInscriptas.setText("Materias no inscriptas");
-        rbNoInscriptas.setContentAreaFilled(false);
+        rbNoInscriptas.setText("No Inscriptas");
         rbNoInscriptas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbNoInscriptasActionPerformed(evt);
             }
         });
-        jPanel1.add(rbNoInscriptas, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+        jPanel1.add(rbNoInscriptas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, -1, -1));
+
+        rbInscriptas.setBackground(new java.awt.Color(34, 39, 46));
+        rbInscriptas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rbInscriptas.setForeground(new java.awt.Color(173, 186, 199));
+        rbInscriptas.setText("Inscriptas");
+        rbInscriptas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbInscriptasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbInscriptas, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
+
+        btAnularInscripcion.setBackground(new java.awt.Color(34, 39, 46));
+        btAnularInscripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btAnularInscripcion.setForeground(new java.awt.Color(173, 186, 199));
+        btAnularInscripcion.setText("Anular Inscripcion");
+        btAnularInscripcion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btAnularInscripcion.setContentAreaFilled(false);
+        btAnularInscripcion.setEnabled(false);
+        btAnularInscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAnularInscripcionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btAnularInscripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 140, 30));
+
+        btInscribir.setBackground(new java.awt.Color(34, 39, 46));
+        btInscribir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btInscribir.setForeground(new java.awt.Color(173, 186, 199));
+        btInscribir.setText("Inscribir");
+        btInscribir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btInscribir.setContentAreaFilled(false);
+        btInscribir.setEnabled(false);
+        jPanel1.add(btInscribir, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 100, 30));
+
+        btSalir.setBackground(new java.awt.Color(34, 39, 46));
+        btSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btSalir.setForeground(new java.awt.Color(173, 186, 199));
+        btSalir.setText("Salir");
+        btSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btSalir.setContentAreaFilled(false);
+        btSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 70, 30));
+
+        jtMaterias.setAutoCreateRowSorter(true);
+        jtMaterias.setBackground(new java.awt.Color(34, 39, 46));
+        jtMaterias.setForeground(new java.awt.Color(34, 39, 46));
+        jtMaterias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jtMaterias);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 530, 120));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
         );
 
         pack();
@@ -169,42 +180,50 @@ public class friInscripciones extends javax.swing.JInternalFrame {
                                            
                                         
 
-    private void cbAlumnosActionPerformed(java.awt.event.ActionEvent evt) {                                          
-     
-    }                                         
-    
-    private void btInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInscribirActionPerformed
-       
-    }//GEN-LAST:event_btInscribirActionPerformed
-
     private void rbNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNoInscriptasActionPerformed
-             rbInscriptas.setSelected(false);
-       cargarTablaNoInscripta();
-       btAnular.setEnabled(true);
-      btInscribir.setEnabled(false);
-     
+        rbInscriptas.setSelected(false);
+        btInscribir.setEnabled(true);
+        btAnularInscripcion.setEnabled(false);
     }//GEN-LAST:event_rbNoInscriptasActionPerformed
 
     private void rbInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInscriptasActionPerformed
-          rbNoInscriptas.setSelected(false);
-       cargarTablaNoInscripta();
-       btAnular.setEnabled(false);
-      btInscribir.setEnabled(true);
+        rbNoInscriptas.setSelected(false);
+        btAnularInscripcion.setEnabled(true);
+        btInscribir.setEnabled(false);
+        
+        
     }//GEN-LAST:event_rbInscriptasActionPerformed
-    
+
+    private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btSalirActionPerformed
+
+    private void cbAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAlumnosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAlumnosActionPerformed
+
+    private void btAnularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnularInscripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btAnularInscripcionActionPerformed
+    private void cargarAlumnos(){
+        for (Alumno lista: listaAlumnos ) {
+            cbAlumnos.addItem(lista);
+            
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAnular;
+    private javax.swing.JButton btAnularInscripcion;
     private javax.swing.JButton btInscribir;
     private javax.swing.JButton btSalir;
     private javax.swing.JComboBox<Alumno> cbAlumnos;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbAlumno;
-    private javax.swing.JLabel lbTitulo1;
-    private javax.swing.JLabel lbTitulo2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel jlAlumno;
+    private javax.swing.JLabel jlFormularioInscripcion;
+    private javax.swing.JLabel jlListadoMaterias;
+    private javax.swing.JTable jtMaterias;
     private javax.swing.JRadioButton rbInscriptas;
     private javax.swing.JRadioButton rbNoInscriptas;
-    private javax.swing.JTable tbInscripciones;
     // End of variables declaration//GEN-END:variables
 
 //    public void cargarAlumnos(){

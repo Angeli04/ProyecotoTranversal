@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,13 +32,14 @@ public class AlumnoData {
     }
     
     public void guardarAlumno(Alumno a){
-        String q = "INSERT INTO alumnos(apellido, nombre, dni, fechaNacimiento) VALUES (?,?,?,?)";
+        String q = "INSERT INTO alumnos(apellido, nombre, dni, fechaNacimiento, estado) VALUES (?,?,?,?,?)";
         try{
             PreparedStatement ps = conn.prepareStatement(q, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, a.getApellido());
             ps.setString(2, a.getNombre());
             ps.setString(3, a.getDni());
             ps.setDate(4, Date.valueOf(a.getFechaNacimiento()));
+            ps.setInt(5, 1);
             if( ps.executeUpdate() > 0 ){
                 JOptionPane.showMessageDialog(null, "Alumno agregado exitosamente.");
             } else {
@@ -118,7 +121,7 @@ public class AlumnoData {
                 a.setApellido(rs.getString("apellido"));
                 a.setNombre(rs.getString("nombre"));
                 a.setDni(rs.getString("dni"));
-                a.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                a.setFechaNacimiento( rs.getDate("fechaNacimiento").toLocalDate());
                 a.setEstado(rs.getInt("estado"));
                 a.setIdAlumno(rs.getInt("idAlumno"));
                 alumnos.add(a);

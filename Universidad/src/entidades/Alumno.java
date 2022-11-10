@@ -13,7 +13,7 @@ import java.time.LocalDate;
  */
 public class Alumno {
     
-    private int idAlumno;
+    private int idAlumno=-1;
     private String apellido;
     private String nombre;
     private String dni;
@@ -80,6 +80,6 @@ public class Alumno {
     
     @Override
     public String toString(){
-         return this.getIdAlumno()+" Nombre completo: "+this.getNombre()+" "+this.getApellido()+" DNI: "+this.getDni()+" F de Nac: "+this.getFechaNacimiento();
+         return this.getNombre()+" "+this.getApellido()+" DNI: "+this.getDni();
     }
 }
