@@ -138,6 +138,11 @@ public class friInscripciones extends javax.swing.JInternalFrame {
         btAnular.setText("Anular Inscripcion");
         btAnular.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(173, 186, 199)));
         btAnular.setContentAreaFilled(false);
+        btAnular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAnularActionPerformed(evt);
+            }
+        });
         jPanel1.add(btAnular, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, 200, 30));
 
         rbInscriptas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

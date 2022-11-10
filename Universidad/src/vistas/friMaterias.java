@@ -5,17 +5,19 @@
  */
 package vistas;
 
+import entidades.Materia;
+import persistencia.MateriaData;
+
 /**
  *
  * @author PUESTO-A1
  */
 public class friMaterias extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form friMaterias
-     */
+    private MateriaData materiaData;
     public friMaterias() {
         initComponents();
+        materiaData=new MateriaData();
     }
 
     /**
@@ -107,6 +109,11 @@ public class friMaterias extends javax.swing.JInternalFrame {
         btGuardar.setText("Guardar");
         btGuardar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
         btGuardar.setContentAreaFilled(false);
+        btGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGuardarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 100, 30));
 
         jCmbBPeriodo.setBackground(new java.awt.Color(34, 39, 46));
@@ -198,6 +205,22 @@ public class friMaterias extends javax.swing.JInternalFrame {
     private void jCmbBPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmbBPeriodoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCmbBPeriodoActionPerformed
+
+    private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
+     
+        String nombre= jTFNombre.getText();
+        int periodo= (Integer) jCmbBPeriodo.getSelectedItem();
+        //String nombre, int periodo, int estado
+        int estado;
+        if (jCBEstado.isEnabled()){
+            estado=1;
+        }else{
+            estado=0;
+        }
+        Materia materia=new Materia(nombre, periodo,estado);
+        materiaData.guardarMateria(materia);
+      
+    }//GEN-LAST:event_btGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
