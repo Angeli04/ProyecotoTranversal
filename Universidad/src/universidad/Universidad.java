@@ -15,7 +15,7 @@ import persistencia.AlumnoData;
 import persistencia.InscripcionData;
 import persistencia.MateriaData;
 import persistencia.MiConexion;
-//import vistas.frmPrincipal;
+import vistas.frmPrincipal;
 
 /**
  *
