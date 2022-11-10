@@ -188,7 +188,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTFIdMateriaActionPerformed
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
-        // TODO add your handling code here:
+       dispose();
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void jCBEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBEstadoActionPerformed

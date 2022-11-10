@@ -33,7 +33,10 @@ public class friInscripciones extends javax.swing.JInternalFrame {
      */
     public friInscripciones() {
         initComponents();
+       
+        
         modelo = new DefaultTableModel();
+        armarCabeceraTabla();
         alumnoData= new AlumnoData();
         inscripcionData= new InscripcionData();
         alumnos = (ArrayList)alumnoData.listarAlumnos();
@@ -82,7 +85,7 @@ public class friInscripciones extends javax.swing.JInternalFrame {
 
         cbAlumnos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cbAlumnos.setForeground(new java.awt.Color(173, 186, 199));
-        jPanel1.add(cbAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
+        jPanel1.add(cbAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 470, 30));
 
         btInscribir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btInscribir.setForeground(new java.awt.Color(173, 186, 199));
@@ -101,6 +104,11 @@ public class friInscripciones extends javax.swing.JInternalFrame {
         btSalir.setText("Salir");
         btSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(173, 186, 199), 1, true));
         btSalir.setContentAreaFilled(false);
+        btSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalirActionPerformed(evt);
+            }
+        });
         jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 530, 100, 30));
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(720, 402));
@@ -130,11 +138,6 @@ public class friInscripciones extends javax.swing.JInternalFrame {
         btAnular.setText("Anular Inscripcion");
         btAnular.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(173, 186, 199)));
         btAnular.setContentAreaFilled(false);
-        btAnular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAnularActionPerformed(evt);
-            }
-        });
         jPanel1.add(btAnular, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, 200, 30));
 
         rbInscriptas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -180,53 +183,65 @@ public class friInscripciones extends javax.swing.JInternalFrame {
     }                                         
     
     private void btInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInscribirActionPerformed
-        int fila= modelo.getRowCount();
+
+        
+        int fila= tbInscripciones.getSelectedRow();
+       
         if (fila!=-1){
+           
             int idMat=(Integer)modelo.getValueAt(fila, 0);
             int periodo =(Integer) modelo.getValueAt(fila, 2);
             String nombre=(String) modelo.getValueAt(fila,1);
             Materia selec=new Materia(nombre,periodo,1);
             selec.setIdMateria(idMat);
             Alumno a= (Alumno) cbAlumnos.getSelectedItem();
-            Inscripcion ins= new Inscripcion(a,selec,-1);
+            Inscripcion ins= new Inscripcion(a,selec,(-1));
             inscripcionData.guardarInscripcion(ins);
+            cargarTablaNoInscripta();
             
         }else{
             JOptionPane.showMessageDialog(this,"No hay materia seleccionada");
         }
+
     }//GEN-LAST:event_btInscribirActionPerformed
 
     private void rbNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNoInscriptasActionPerformed
-             rbInscriptas.setSelected(false);
+       rbInscriptas.setSelected(false);
        cargarTablaNoInscripta();
-       btAnular.setEnabled(true);
-      btInscribir.setEnabled(false);
+       btAnular.setEnabled(false);
+       btInscribir.setEnabled(true);
      
     }//GEN-LAST:event_rbNoInscriptasActionPerformed
 
     private void rbInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInscriptasActionPerformed
-          rbNoInscriptas.setSelected(false);
-       cargarTablaNoInscripta();
-       btAnular.setEnabled(false);
-      btInscribir.setEnabled(true);
+       rbNoInscriptas.setSelected(false);
+       cargarTablaInscripta();
+       btAnular.setEnabled(true);
+       btInscribir.setEnabled(false);
     }//GEN-LAST:event_rbInscriptasActionPerformed
 
     private void btAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnularActionPerformed
-   int fila= modelo.getRowCount();
-        if (fila!=-1){
+      int fila= tbInscripciones.getSelectedRow();
+      
+        if (fila!= -1){
+            
             int idMat=(Integer)modelo.getValueAt(fila, 0);
             int periodo =(Integer) modelo.getValueAt(fila, 2);
             String nombre=(String) modelo.getValueAt(fila,1);
-            Materia selec=new Materia(nombre,periodo,1);
+            Materia selec = new Materia(nombre,periodo,1);
             selec.setIdMateria(idMat);
             Alumno a= (Alumno) cbAlumnos.getSelectedItem();
-            Inscripcion ins= new Inscripcion(a,selec,-1);
-            inscripcionData.eliminarInscripcion(a, selec);
-            
+           inscripcionData.eliminarInscripcion(a, selec);
+            cargarTablaInscripta();
         }else{
             JOptionPane.showMessageDialog(this,"No hay materia seleccionada");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btAnularActionPerformed
+
+    private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
+     dispose();
+    }//GEN-LAST:event_btSalirActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAnular;
@@ -279,7 +294,7 @@ public class friInscripciones extends javax.swing.JInternalFrame {
            ArrayList<Materia> listaMateria= (ArrayList)inscripcionData.obtenerMateriasNoInscriptas(elegido);
             for (Materia materia : listaMateria) {
                 modelo.addRow(new Object[]{ materia.getIdMateria(),materia.getNombre(),materia.getPeriodo()});
-                
+                tbInscripciones.setModel(modelo);
             }
         }else{
             JOptionPane.showMessageDialog(this, "Debe seleccionar un alumno");
@@ -290,9 +305,9 @@ public class friInscripciones extends javax.swing.JInternalFrame {
         borrarFilasTabla();
          Alumno elegido= (Alumno) cbAlumnos.getSelectedItem();
         if(elegido!=null){
-           ArrayList<Materia> listaMateria= (ArrayList)inscripcionData.obtenerMateriasInscriptas(elegido);
-            for (Materia materia : listaMateria) {
-                modelo.addRow(new Object[]{ materia.getIdMateria(),materia.getNombre(),materia.getPeriodo()});
+           ArrayList<Inscripcion> listaMateria= (ArrayList)inscripcionData.obtenerMateriasInscriptas(elegido);
+            for (Inscripcion ins : listaMateria) {
+                modelo.addRow(new Object[]{ ins.getMateria().getIdMateria(),ins.getMateria().getNombre(),ins.getMateria().getPeriodo()});
                 
             }
     }else{

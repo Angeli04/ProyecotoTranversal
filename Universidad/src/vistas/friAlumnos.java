@@ -57,27 +57,27 @@ public class friAlumnos extends javax.swing.JInternalFrame {
         lbApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbApellido.setForeground(new java.awt.Color(173, 186, 199));
         lbApellido.setText("Apellido");
-        jPanel1.add(lbApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 200, 30));
+        jPanel1.add(lbApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 200, 30));
 
         lbNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbNombre.setForeground(new java.awt.Color(173, 186, 199));
         lbNombre.setText("Nombre");
-        jPanel1.add(lbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 200, 30));
+        jPanel1.add(lbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 200, 30));
 
         lbDni.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbDni.setForeground(new java.awt.Color(173, 186, 199));
         lbDni.setText("DNI");
-        jPanel1.add(lbDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 200, 30));
+        jPanel1.add(lbDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 200, 30));
 
         lbFechaNacimiento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbFechaNacimiento.setForeground(new java.awt.Color(173, 186, 199));
         lbFechaNacimiento.setText("Fecha de Nacimiento");
-        jPanel1.add(lbFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 200, 30));
+        jPanel1.add(lbFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 200, 30));
 
         lbIdAlumno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbIdAlumno.setForeground(new java.awt.Color(173, 186, 199));
         lbIdAlumno.setText("Id del alumno");
-        jPanel1.add(lbIdAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 200, 30));
+        jPanel1.add(lbIdAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 200, 30));
 
         jTFApellido.setBackground(new java.awt.Color(34, 39, 46));
         jTFApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -88,26 +88,26 @@ public class friAlumnos extends javax.swing.JInternalFrame {
                 jTFApellidoActionPerformed(evt);
             }
         });
-        jPanel1.add(jTFApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
+        jPanel1.add(jTFApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 200, 30));
 
         jTFNombre.setBackground(new java.awt.Color(34, 39, 46));
         jTFNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFNombre.setForeground(new java.awt.Color(173, 186, 199));
         jTFNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
-        jPanel1.add(jTFNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 200, 30));
+        jPanel1.add(jTFNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 200, 30));
 
         jTFDni.setBackground(new java.awt.Color(34, 39, 46));
         jTFDni.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTFDni.setForeground(new java.awt.Color(173, 186, 199));
         jTFDni.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
-        jPanel1.add(jTFDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 200, 30));
+        jPanel1.add(jTFDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 200, 30));
 
         jTFIdAlumno.setBackground(new java.awt.Color(34, 39, 46));
         jTFIdAlumno.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
         jTFIdAlumno.setForeground(new java.awt.Color(173, 186, 199));
         jTFIdAlumno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         jTFIdAlumno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(jTFIdAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 100, 30));
+        jPanel1.add(jTFIdAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 100, 30));
 
         ckEstado.setBackground(new java.awt.Color(34, 39, 46));
         ckEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -119,12 +119,12 @@ public class friAlumnos extends javax.swing.JInternalFrame {
                 ckEstadoActionPerformed(evt);
             }
         });
-        jPanel1.add(ckEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 200, 30));
+        jPanel1.add(ckEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 200, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(173, 186, 199));
         jLabel1.setText("Formulario de alumno");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         btBuscar.setBackground(new java.awt.Color(34, 39, 46));
         btBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -137,7 +137,7 @@ public class friAlumnos extends javax.swing.JInternalFrame {
                 btBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 100, 30));
+        jPanel1.add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 100, 30));
 
         btSalir.setBackground(new java.awt.Color(34, 39, 46));
         btSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -150,19 +150,19 @@ public class friAlumnos extends javax.swing.JInternalFrame {
                 btSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 100, 30));
+        jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 100, 30));
 
         lbEstado1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbEstado1.setForeground(new java.awt.Color(173, 186, 199));
         lbEstado1.setText("Estado");
-        jPanel1.add(lbEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 200, 30));
+        jPanel1.add(lbEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 200, 30));
 
         jTFFechaNacimiento.setBackground(new java.awt.Color(34, 39, 46));
         jTFFechaNacimiento.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
         jTFFechaNacimiento.setForeground(new java.awt.Color(173, 186, 199));
         jTFFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         jTFFechaNacimiento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jPanel1.add(jTFFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 200, 30));
+        jPanel1.add(jTFFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 200, 30));
 
         btGuardar1.setBackground(new java.awt.Color(34, 39, 46));
         btGuardar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -175,21 +175,17 @@ public class friAlumnos extends javax.swing.JInternalFrame {
                 btGuardar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 100, 30));
+        jPanel1.add(btGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

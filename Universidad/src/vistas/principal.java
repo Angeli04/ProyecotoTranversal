@@ -282,7 +282,7 @@ public class principal extends javax.swing.JFrame {
 
     private void menuInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInscripcionActionPerformed
         jDesktopPane1.removeAll();
-        friInscripciones1 ins= new friInscripciones1();
+        friInscripciones ins= new friInscripciones();
         jDesktopPane1.add(ins);
         ins.setVisible(true);
         
@@ -320,7 +320,6 @@ public class principal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
