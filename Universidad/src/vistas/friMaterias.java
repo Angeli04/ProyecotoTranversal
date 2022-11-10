@@ -22,9 +22,8 @@ public class friMaterias extends javax.swing.JInternalFrame {
     public friMaterias() {
         initComponents();
         llenarComboBox();
-        con= new MiConexion("jdbc:mysql://localhost/universidad","root","");
         mat= new Materia();
-        mD= new MateriaData(con);
+        mD= new MateriaData();
     }
 
     /**

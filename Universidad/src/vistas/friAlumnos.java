@@ -221,8 +221,7 @@ public class friAlumnos extends javax.swing.JInternalFrame {
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         
         Alumno al= new Alumno();
-        MiConexion con = new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
-        AlumnoData aD= new AlumnoData(con);
+        AlumnoData aD= new AlumnoData();
         String dniBuscar=jTFDni.getText();
         al=aD.obtenerAlumnoXDni(dniBuscar);
         if (al!=null&&al.getEstado()!=0){
@@ -245,9 +244,8 @@ public class friAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
-        MiConexion con = new MiConexion("jdbc:mysql://localHost/universidad", "root", "");
         Alumno al= new Alumno();
-        AlumnoData aD= new AlumnoData(con);
+        AlumnoData aD= new AlumnoData();
         aD.eliminarAlumno(aD.obtenerAlumnoXDni(jTFDni.getText()).getIdAlumno());
         al=aD.obtenerAlumno(aD.obtenerAlumnoXDni(jTFDni.getText()).getIdAlumno());
         if (al.getEstado()==0){
@@ -259,9 +257,7 @@ public class friAlumnos extends javax.swing.JInternalFrame {
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
          Alumno al= new Alumno();
-         MiConexion con = new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
-      
-        AlumnoData aD= new AlumnoData(con);
+        AlumnoData aD= new AlumnoData();
         java.util.Date sfecha = jdcFechaNacimiento.getDate();
         LocalDate fechaNac = sfecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         al.setFechaNacimiento(fechaNac);
@@ -273,7 +269,7 @@ public class friAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void jTFApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFApellidoFocusLost
-String val="[a-zA-Z]*";
+        String val="[a-zA-Z]*";
         if (!jTFApellido.getText().matches(val)){
             JOptionPane.showMessageDialog(this, "No es un dato Valido para apellido.");
             jTFApellido.requestFocus();
@@ -288,8 +284,7 @@ String val="[a-zA-Z]*";
     }//GEN-LAST:event_btLimpiarActionPerformed
 
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
-        MiConexion con = new MiConexion("jdbc:mysql://localhost/universidad", "root", "");
-        AlumnoData aD= new AlumnoData(con);
+        AlumnoData aD= new AlumnoData();
         Alumno al= new Alumno();
         al.setIdAlumno(aD.obtenerAlumnoXDni(jTFDni.getText()).getIdAlumno());
         al.setNombre(jTFNombre.getText());
