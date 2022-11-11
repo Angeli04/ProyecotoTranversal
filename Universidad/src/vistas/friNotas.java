@@ -5,7 +5,14 @@
  */
 package vistas;
 
+import entidades.Inscripcion;
 import entidades.Materia;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import persistencia.AlumnoData;
+import persistencia.InscripcionData;
+import persistencia.MateriaData;
 
 /**
  *
@@ -13,6 +20,12 @@ import entidades.Materia;
  */
 public class friNotas extends javax.swing.JInternalFrame {
 
+    private AlumnoData alumnoData;
+    private MateriaData materiaData;
+    private ArrayList<Materia> materias;
+    private InscripcionData inscripcionData;
+    private DefaultTableModel modelo;
+    private InscripcionData insData;
     
     private final Materia m = new Materia();
     /**
@@ -20,6 +33,12 @@ public class friNotas extends javax.swing.JInternalFrame {
      */
     public friNotas() {
         initComponents();
+        modelo= new DefaultTableModel();
+        materiaData= new MateriaData();
+        materias= new ArrayList();
+        materias=(ArrayList) materiaData.listarMaterias();
+        cargarCombo();
+        cabecera();        
     }
 
     /**
@@ -37,6 +56,7 @@ public class friNotas extends javax.swing.JInternalFrame {
         cbMaterias = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbMaterias = new javax.swing.JTable();
+        btnSalir = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -72,7 +92,20 @@ public class friNotas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tbMaterias);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 700, 320));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 700, 280));
+
+        btnSalir.setBackground(new java.awt.Color(34, 39, 46));
+        btnSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(173, 186, 199));
+        btnSalir.setText("Salir");
+        btnSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSalir.setContentAreaFilled(false);
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(593, 431, 110, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,8 +121,13 @@ public class friNotas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<Materia> cbMaterias;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -97,4 +135,59 @@ public class friNotas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbTitulo1;
     private javax.swing.JTable tbMaterias;
     // End of variables declaration//GEN-END:variables
+    
+    private void cargarCombo() {
+        cbMaterias.addItem(null);
+        materias=(ArrayList) materiaData.listarMaterias();
+        for (Materia materia : materias) {
+            cbMaterias.addItem(materia);
+            
+        }
+    }
+
+    private void cabecera() {
+       ArrayList<Object> columnas= new ArrayList();
+       columnas.add("ID");
+       columnas.add("Nombre");
+       columnas.add("Apellido");
+       columnas.add("DNI");
+       columnas.add("Fecha de nacimiento");
+        for (Object ob : columnas) {
+            modelo.addColumn(ob);
+            
+        }
+        tbMaterias.setModel(modelo);
+    }
+
+    private void cargarTabla() {
+       borrarFilasTabla();
+       Materia selec= new Materia();
+       selec= (Materia) cbMaterias.getSelectedItem();
+       if(selec!=null){
+       ArrayList <Inscripcion> ins= new ArrayList();
+       ins= (ArrayList)insData.obtenerAlumnosInscriptos(selec);
+       if(ins.isEmpty()){
+           JOptionPane.showMessageDialog(this, "No hay inscriptos en esta materia");
+       }
+       for (Inscripcion in : ins) {
+            modelo.addRow(new Object[]{in.getAlumno().getIdAlumno(),
+            in.getAlumno().getNombre(),
+            in.getAlumno().getApellido(),
+            in.getAlumno().getDni(),
+            in.getAlumno().getFechaNacimiento()});
+        }
+       tbMaterias.setModel(modelo);
+      
+    }
+    }
+    private void borrarFilasTabla() {
+        if (modelo != null) {
+            int a = modelo.getRowCount() - 1;
+
+            for (int i = a; i >= 0; i--) {
+                modelo.removeRow(i);
+            }
+        }
+    }
+
 }

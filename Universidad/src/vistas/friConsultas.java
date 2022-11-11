@@ -4,10 +4,7 @@
  */
 package vistas;
 
-import entidades.Alumno;
 import entidades.Inscripcion;
-import entidades.Inscripcion;
-import entidades.Materia;
 import entidades.Materia;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -244,5 +241,5 @@ public class friConsultas extends javax.swing.JInternalFrame {
                 modelo.removeRow(i);
             }
         }
-}
+    }
 }
