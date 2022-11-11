@@ -249,7 +249,12 @@ public class friMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void jTFNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNombreFocusLost
-        String val="[a-zA-Z0-9\\s]*";
+        String val="[\\s[a-zA-Z]+]*";
+        String val2="[\\s]*";
+        if(jTFNombre.getText().matches(val2)){
+        JOptionPane.showMessageDialog(this, "No es un nombre valido, use solo letras.");
+            jTFNombre.requestFocus();
+    }
         if (!jTFNombre.getText().matches(val)){
             JOptionPane.showMessageDialog(this, "No es un nombre valido, use solo letras.");
             jTFNombre.requestFocus();

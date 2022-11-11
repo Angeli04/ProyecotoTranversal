@@ -269,7 +269,12 @@ public class friAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void jTFApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFApellidoFocusLost
-        String val="[a-zA-Z]*";
+        String val="[\\s[a-zA-Z]+]*";
+        String val2="[\\s]*";
+        if (jTFApellido.getText().matches(val2)){
+            JOptionPane.showMessageDialog(this, "No es un dato Valido para apellido.");
+            jTFApellido.requestFocus();
+        }
         if (!jTFApellido.getText().matches(val)){
             JOptionPane.showMessageDialog(this, "No es un dato Valido para apellido.");
             jTFApellido.requestFocus();
@@ -299,7 +304,13 @@ public class friAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btActualizarActionPerformed
 
     private void jTFNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNombreFocusLost
-         String val="[a-zA-Z]*";
+         String val="[\\s[a-zA-Z]+]*";
+        String val2="[\\s]*";
+        if(jTFNombre.getText().matches(val2)){
+            JOptionPane.showMessageDialog(this,"No es un dato valido para nombre.");
+            jTFNombre.requestFocus();
+        
+        }
         if(!jTFNombre.getText().matches(val)){
             JOptionPane.showMessageDialog(this,"No es un dato valido para nombre.");
             jTFNombre.requestFocus();
