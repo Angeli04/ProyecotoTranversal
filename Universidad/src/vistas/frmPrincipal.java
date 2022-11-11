@@ -5,6 +5,8 @@
  */
 package vistas;
 
+import javax.swing.JDesktopPane;
+
 
 
 /**
@@ -34,7 +36,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMAlumnos = new javax.swing.JMenu();
         jmAlumno = new javax.swing.JMenuItem();
-        jMMaterias = new javax.swing.JMenu();
+        mnSalir = new javax.swing.JMenu();
         jmMateria = new javax.swing.JMenuItem();
         jMInscripciones = new javax.swing.JMenu();
         jMIInscripciones = new javax.swing.JMenuItem();
@@ -59,7 +61,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             .addGap(0, 451, Short.MAX_VALUE)
         );
 
-        jMAlumnos.setText("Alumnos");
+        jMAlumnos.setText("Universidad");
         jMAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMAlumnosActionPerformed(evt);
@@ -76,7 +78,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMAlumnos);
 
-        jMMaterias.setText("Materias");
+        mnSalir.setText("Materias");
 
         jmMateria.setText("Materia");
         jmMateria.addActionListener(new java.awt.event.ActionListener() {
@@ -84,9 +86,9 @@ public class frmPrincipal extends javax.swing.JFrame {
                 jmMateriaActionPerformed(evt);
             }
         });
-        jMMaterias.add(jmMateria);
+        mnSalir.add(jmMateria);
 
-        jMenuBar1.add(jMMaterias);
+        jMenuBar1.add(mnSalir);
 
         jMInscripciones.setText("Inscripciones");
 
@@ -110,6 +112,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMConsultas.setText("Consultas");
 
         jMenuItem1.setText("Consultar alumnos por materia");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMConsultas.add(jMenuItem1);
 
         jMenuBar1.add(jMConsultas);
@@ -158,6 +165,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         ventInsc.setVisible(true);
     }//GEN-LAST:event_jMIInscripcionesActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        dpPrincipal.removeAll();
+        dpPrincipal.repaint();
+       friConsultas consulta= new friConsultas();
+       dpPrincipal.add(consulta);
+      consulta.setVisible(true);
+   
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -199,10 +215,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMICargarNotas;
     private javax.swing.JMenuItem jMIInscripciones;
     private javax.swing.JMenu jMInscripciones;
-    private javax.swing.JMenu jMMaterias;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jmAlumno;
     private javax.swing.JMenuItem jmMateria;
+    private javax.swing.JMenu mnSalir;
     // End of variables declaration//GEN-END:variables
 }
