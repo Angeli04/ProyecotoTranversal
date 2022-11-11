@@ -240,6 +240,11 @@ public class principal extends javax.swing.JFrame {
         jMenu26.setText("Consultas");
 
         menuConsultas.setText("Lista de Alumnos x Materia");
+        menuConsultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultasActionPerformed(evt);
+            }
+        });
         jMenu26.add(menuConsultas);
 
         jMenuBar1.add(jMenu26);
@@ -294,6 +299,14 @@ public class principal extends javax.swing.JFrame {
       jDesktopPane1.add(alum);
       alum.setVisible(true);
     }//GEN-LAST:event_menuAlumnosActionPerformed
+
+    private void menuConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultasActionPerformed
+        jDesktopPane1.removeAll();
+      friConsultas consultas =  new friConsultas();
+      jDesktopPane1.add(consultas);
+      consultas.setVisible(true);
+     
+    }//GEN-LAST:event_menuConsultasActionPerformed
 
     /**
      * @param args the command line arguments

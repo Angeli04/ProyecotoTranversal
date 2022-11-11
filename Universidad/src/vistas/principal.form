@@ -326,6 +326,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Lista de Alumnos x Materia"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultasActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
