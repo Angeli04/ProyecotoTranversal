@@ -5,12 +5,16 @@
  */
 package vistas;
 
+import entidades.Materia;
+
 /**
  *
  * @author maxim
  */
 public class friNotas extends javax.swing.JInternalFrame {
 
+    
+    private final Materia m = new Materia();
     /**
      * Creates new form friNotas
      */
@@ -27,27 +31,58 @@ public class friNotas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lbTitulo1 = new javax.swing.JLabel();
+        lbMateria = new javax.swing.JLabel();
+        cbMaterias = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbMaterias = new javax.swing.JTable();
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(173, 186, 199));
-        jLabel2.setText("Carga de Notas");
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jPanel1.setBackground(new java.awt.Color(34, 39, 46));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbTitulo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lbTitulo1.setForeground(new java.awt.Color(173, 186, 199));
+        lbTitulo1.setText("Formulario de notas");
+        jPanel1.add(lbTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        lbMateria.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbMateria.setForeground(new java.awt.Color(173, 186, 199));
+        lbMateria.setText("Materia");
+        jPanel1.add(lbMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 200, 30));
+
+        cbMaterias.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cbMaterias.setForeground(new java.awt.Color(173, 186, 199));
+        jPanel1.add(cbMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 390, 30));
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(720, 402));
+
+        tbMaterias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tbMaterias);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 700, 320));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(183, 183, 183)
-                .addComponent(jLabel2)
-                .addContainerGap(322, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel2)
-                .addContainerGap(391, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
         );
 
         pack();
@@ -55,6 +90,11 @@ public class friNotas extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox<Materia> cbMaterias;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbMateria;
+    private javax.swing.JLabel lbTitulo1;
+    private javax.swing.JTable tbMaterias;
     // End of variables declaration//GEN-END:variables
 }

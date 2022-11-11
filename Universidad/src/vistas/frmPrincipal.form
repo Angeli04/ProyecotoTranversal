@@ -121,10 +121,10 @@
     <Container class="javax.swing.JDesktopPane" name="dpPrincipal">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+          <Color blue="2e" green="27" red="22" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+          <Color blue="2e" green="27" red="22" type="rgb"/>
         </Property>
       </Properties>
 

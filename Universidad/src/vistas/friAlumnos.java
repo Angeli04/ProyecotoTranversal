@@ -11,7 +11,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.JOptionPane;
 import persistencia.AlumnoData;
-import persistencia.MiConexion;
 
 /**
  *
