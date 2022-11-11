@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,7 +51,7 @@ public class InscripcionData {
             ps.close();
             
         } catch(SQLException ex) {
-            //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en guardarInscripcion.");
         }
     } // Realiza una inscripcion.

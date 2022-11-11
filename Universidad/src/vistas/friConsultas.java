@@ -6,34 +6,31 @@ package vistas;
 
 import entidades.Inscripcion;
 import entidades.Materia;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import persistencia.AlumnoData;
 import persistencia.InscripcionData;
 import persistencia.MateriaData;
 
-
 public class friConsultas extends javax.swing.JInternalFrame {
 
-    private AlumnoData alumnoData;
     private MateriaData materiaData;
     private ArrayList<Materia> materias;
-    private InscripcionData inscripcionData;
     private DefaultTableModel modelo;
     private InscripcionData insData;
-    
+
     public friConsultas() {
-        
+
         initComponents();
-        insData= new InscripcionData();
-        modelo= new DefaultTableModel();
-        materiaData= new MateriaData();
-        materias= new ArrayList();
-        materias=(ArrayList) materiaData.listarMaterias();
+        insData = new InscripcionData();
+        modelo = new DefaultTableModel();
+        materiaData = new MateriaData();
+        materias = new ArrayList();
+        materias = (ArrayList) materiaData.listarMaterias();
         cargarCombo();
         cabecera();
-        
+
     }
 
     /**
@@ -53,6 +50,7 @@ public class friConsultas extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
 
+        setClosable(true);
         setPreferredSize(new java.awt.Dimension(632, 477));
 
         jDesktopPane1.setBackground(new java.awt.Color(34, 39, 46));
@@ -166,15 +164,15 @@ public class friConsultas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ComMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComMateriaActionPerformed
-       cargarTabla();
+        cargarTabla();
     }//GEN-LAST:event_ComMateriaActionPerformed
 
     private void ComMateriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComMateriaItemStateChanged
-       //cargarTabla();
+        //cargarTabla();
     }//GEN-LAST:event_ComMateriaItemStateChanged
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-       this.dispose();
+        this.dispose();
 
     }//GEN-LAST:event_btnSalirActionPerformed
 
@@ -191,48 +189,51 @@ public class friConsultas extends javax.swing.JInternalFrame {
 
     private void cargarCombo() {
         ComMateria.addItem(null);
-        materias=(ArrayList) materiaData.listarMaterias();
+        materias = (ArrayList) materiaData.listarMaterias();
         for (Materia materia : materias) {
             ComMateria.addItem(materia);
-            
+
         }
     }
 
     private void cabecera() {
-       ArrayList<Object> columnas= new ArrayList();
-       columnas.add("ID");
-       columnas.add("Nombre");
-       columnas.add("Apellido");
-       columnas.add("DNI");
-       columnas.add("Fecha de nacimiento");
+        ArrayList<Object> columnas = new ArrayList();
+        columnas.add("ID");
+        columnas.add("Nombre");
+        columnas.add("Apellido");
+        columnas.add("DNI");
+        columnas.add("Fecha de nacimiento");
         for (Object ob : columnas) {
             modelo.addColumn(ob);
-            
+
         }
         jTabla.setModel(modelo);
     }
 
     private void cargarTabla() {
-       borrarFilasTabla();
-       Materia selec= new Materia();
-       selec= (Materia) ComMateria.getSelectedItem();
-       if(selec!=null){
-       ArrayList <Inscripcion> ins= new ArrayList();
-       ins= (ArrayList)insData.obtenerAlumnosInscriptos(selec);
-       if(ins.isEmpty()){
-           JOptionPane.showMessageDialog(this, "No hay inscriptos en esta materia");
-       }
-       for (Inscripcion in : ins) {
-            modelo.addRow(new Object[]{in.getAlumno().getIdAlumno(),
-            in.getAlumno().getNombre(),
-            in.getAlumno().getApellido(),
-            in.getAlumno().getDni(),
-            in.getAlumno().getFechaNacimiento()});
+        borrarFilasTabla();
+        Materia selec = new Materia();
+        selec = (Materia) ComMateria.getSelectedItem();
+        if (selec != null) {
+            ArrayList<Inscripcion> ins = new ArrayList();
+            ins = (ArrayList) insData.obtenerAlumnosInscriptos(selec);
+            if (ins.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay inscriptos en esta materia");
+            }
+            for (Inscripcion in : ins) {
+                modelo.addRow(new Object[]{
+                    in.getAlumno().getIdAlumno(),
+                    in.getAlumno().getNombre(),
+                    in.getAlumno().getApellido(),
+                    in.getAlumno().getDni(),
+                    in.getAlumno().getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+                });
+            }
+            jTabla.setModel(modelo);
+
         }
-       jTabla.setModel(modelo);
-      
     }
-    }
+
     private void borrarFilasTabla() {
         if (modelo != null) {
             int a = modelo.getRowCount() - 1;

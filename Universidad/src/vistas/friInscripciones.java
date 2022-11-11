@@ -66,6 +66,7 @@ public class friInscripciones extends javax.swing.JInternalFrame {
         rbNoInscriptas = new javax.swing.JRadioButton();
         btnSalir = new javax.swing.JButton();
 
+        setClosable(true);
         setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(34, 39, 46));

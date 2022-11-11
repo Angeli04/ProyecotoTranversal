@@ -12,16 +12,17 @@ import java.time.LocalDate;
  * @author PUESTO-A1
  */
 public class Alumno {
-    
-    private int idAlumno=-1;
+
+    private int idAlumno = -1;
     private String apellido;
     private String nombre;
     private String dni;
     private LocalDate fechaNacimiento;
-    private int estado; 
+    private int estado;
 
-    public Alumno() {}
-    
+    public Alumno() {
+    }
+
     public Alumno(String apellido, String nombre, String dni, LocalDate fechaNacimiento, int estado) {
         this.apellido = apellido;
         this.nombre = nombre;
@@ -77,9 +78,9 @@ public class Alumno {
     public void setEstado(int estado) {
         this.estado = estado;
     }
-    
+
     @Override
-    public String toString(){
-         return this.getNombre()+" "+this.getApellido()+" DNI: "+this.getDni();
+    public String toString() {
+        return this.getNombre() + " " + this.getApellido() + " DNI: " + this.getDni();
     }
 }
