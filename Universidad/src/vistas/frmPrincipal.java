@@ -43,7 +43,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMCargarNotas = new javax.swing.JMenu();
         jMICargarNotas = new javax.swing.JMenuItem();
         jMConsultas = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMconsultas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,19 +105,24 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMCargarNotas.setText("Notas");
 
         jMICargarNotas.setText("Cargar Notas");
+        jMICargarNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMICargarNotasActionPerformed(evt);
+            }
+        });
         jMCargarNotas.add(jMICargarNotas);
 
         jMenuBar1.add(jMCargarNotas);
 
         jMConsultas.setText("Consultas");
 
-        jMenuItem1.setText("Consultar alumnos por materia");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMconsultas.setText("Consultar alumnos por materia");
+        jMconsultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMconsultasActionPerformed(evt);
             }
         });
-        jMConsultas.add(jMenuItem1);
+        jMConsultas.add(jMconsultas);
 
         jMenuBar1.add(jMConsultas);
 
@@ -165,14 +170,22 @@ public class frmPrincipal extends javax.swing.JFrame {
         ventInsc.setVisible(true);
     }//GEN-LAST:event_jMIInscripcionesActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMconsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMconsultasActionPerformed
         dpPrincipal.removeAll();
         dpPrincipal.repaint();
        friConsultas consulta= new friConsultas();
        dpPrincipal.add(consulta);
       consulta.setVisible(true);
    
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMconsultasActionPerformed
+
+    private void jMICargarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICargarNotasActionPerformed
+       dpPrincipal.removeAll();
+        dpPrincipal.repaint();
+       friNotas ventNota= new friNotas();
+       dpPrincipal.add(ventNota);
+      ventNota.setVisible(true);
+    }//GEN-LAST:event_jMICargarNotasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,8 +228,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMICargarNotas;
     private javax.swing.JMenuItem jMIInscripciones;
     private javax.swing.JMenu jMInscripciones;
+    private javax.swing.JMenuItem jMconsultas;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jmAlumno;
     private javax.swing.JMenuItem jmMateria;
     private javax.swing.JMenu mnSalir;
