@@ -310,9 +310,9 @@ public class friInscripciones extends javax.swing.JInternalFrame {
         borrarFilasTabla();
          Alumno elegido= (Alumno) cbAlumnos.getSelectedItem();
         if(elegido!=null){
-           ArrayList<Inscripcion> listaMateria= (ArrayList)inscripcionData.obtenerMateriasInscriptas(elegido);
-            for (Inscripcion ins : listaMateria) {
-                modelo.addRow(new Object[]{ ins.getMateria().getIdMateria(),ins.getMateria().getNombre(),ins.getMateria().getPeriodo()});
+           ArrayList<Materia> listaMateria= (ArrayList)inscripcionData.obtenerMateriasInscriptas(elegido);
+            for (Materia ins : listaMateria) {
+                modelo.addRow(new Object[]{ ins.getIdMateria(),ins.getNombre(),ins.getPeriodo()});
                 
             }
     }else{

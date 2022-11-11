@@ -112,7 +112,13 @@ public class InscripcionData {
         Materia m = null;
         List<Materia> lista = new ArrayList<>();
         try{
-            String q = "SELECT * FROM inscripciones WHERE idAlumno= ?";
+            String q = "SELECT * "
+                    + "FROM materias "
+                    + "WHERE idMateria  IN ( "
+                    + "SELECT idMateria "
+                    + "FROM inscripciones "
+                    + "WHERE inscripciones.idAlumno = ?) "
+                    + "AND estado = 1";
             PreparedStatement ps = conn.prepareStatement(q);
             ps.setInt(1, a.getIdAlumno());
             ResultSet rs = ps.executeQuery();
@@ -130,7 +136,7 @@ public class InscripcionData {
             ps.close();
         } catch(SQLException ex) {
             //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en obtenerMateriasInscriptas.");
+            JOptionPane.showMessageDialog(null, ex.toString());
         }
         return lista;
     }
