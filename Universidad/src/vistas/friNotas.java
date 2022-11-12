@@ -34,7 +34,16 @@ public class friNotas extends javax.swing.JInternalFrame {
      */
     public friNotas() {
         initComponents();
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                if(column == 0 || column == 1 || column == 2 ){
+                    return false;
+                } else{
+                    return true;
+                }
+            }
+        };
         alumnoData = new AlumnoData();
         materiaData = new MateriaData();
         inscripcionData = new InscripcionData();
@@ -63,6 +72,7 @@ public class friNotas extends javax.swing.JInternalFrame {
         btnSalir1 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(34, 39, 46));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -144,16 +154,29 @@ public class friNotas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        int fila = tbMaterias.getSelectedRow();
-        if (fila != -1) {
-            String dniAlumno = (String) modelo.getValueAt(fila, 2);
-            Alumno alu = alumnoData.obtenerAlumnoXDni(dniAlumno);
-            Materia mat = (Materia) cbMaterias.getSelectedItem();
-            Float nota = Float.parseFloat((String) modelo.getValueAt(fila, 3));
-            inscripcionData.actualizarNota(alu, mat, nota);
-        } else {
-            JOptionPane.showMessageDialog(this, "No hay alumno seleccionado.");
+
+        try{
+            int fila = tbMaterias.getSelectedRow();
+            if (fila != -1) {
+                Float nota = Float.parseFloat((String) modelo.getValueAt(fila, 3));
+                if(nota < 0 || nota > 10 || nota.isNaN()){
+                    JOptionPane.showMessageDialog(this, "La nota ingresada no es válida.");
+                } else {
+                    String dniAlumno = (String) modelo.getValueAt(fila, 2);
+                    Alumno alu = alumnoData.obtenerAlumnoXDni(dniAlumno);
+                    Materia mat = (Materia) cbMaterias.getSelectedItem();
+                    inscripcionData.actualizarNota(alu, mat, nota);
+                    cargarTabla();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No hay alumno seleccionado.");
+            }            
+        } catch(ClassCastException e){
+            JOptionPane.showMessageDialog(this, "La nota ingresada no es válida.");
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "La nota ingresada no es válida.");
         }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void cbMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMateriasActionPerformed

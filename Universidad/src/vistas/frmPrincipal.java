@@ -43,19 +43,23 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMconsultas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(34, 39, 46));
+        setMinimumSize(new java.awt.Dimension(900, 700));
+        setPreferredSize(new java.awt.Dimension(900, 700));
 
         dpPrincipal.setBackground(new java.awt.Color(34, 39, 46));
         dpPrincipal.setForeground(new java.awt.Color(34, 39, 46));
+        dpPrincipal.setPreferredSize(new java.awt.Dimension(900, 700));
 
         javax.swing.GroupLayout dpPrincipalLayout = new javax.swing.GroupLayout(dpPrincipal);
         dpPrincipal.setLayout(dpPrincipalLayout);
         dpPrincipalLayout.setHorizontalGroup(
             dpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 782, Short.MAX_VALUE)
+            .addGap(0, 900, Short.MAX_VALUE)
         );
         dpPrincipalLayout.setVerticalGroup(
             dpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 451, Short.MAX_VALUE)
+            .addGap(0, 679, Short.MAX_VALUE)
         );
 
         jMAlumnos.setText("Universidad");
@@ -129,11 +133,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dpPrincipal)
+            .addComponent(dpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dpPrincipal, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(dpPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
         );
 
         pack();

@@ -15,15 +15,16 @@ import persistencia.MiConexion;
  * @author PUESTO-A1
  */
 public class friMaterias extends javax.swing.JInternalFrame {
-        private MiConexion con;
-        private Materia mat;
-        private MateriaData mD;
-   
+
+    private MiConexion con;
+    private Materia mat;
+    private MateriaData materiaData;
+
     public friMaterias() {
         initComponents();
         llenarComboBox();
-        mat= new Materia();
-        mD= new MateriaData();
+        mat = new Materia();
+        materiaData = new MateriaData();
     }
 
     /**
@@ -52,33 +53,36 @@ public class friMaterias extends javax.swing.JInternalFrame {
         btActualizar = new javax.swing.JButton();
         btBuscar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(34, 39, 46));
         setClosable(true);
+        setMinimumSize(new java.awt.Dimension(640, 480));
+        setPreferredSize(new java.awt.Dimension(640, 480));
 
         jPanel1.setBackground(new java.awt.Color(34, 39, 46));
         jPanel1.setForeground(new java.awt.Color(173, 186, 199));
-        jPanel1.setMinimumSize(new java.awt.Dimension(600, 450));
-        jPanel1.setPreferredSize(new java.awt.Dimension(600, 450));
+        jPanel1.setMinimumSize(new java.awt.Dimension(600, 480));
+        jPanel1.setPreferredSize(new java.awt.Dimension(600, 480));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(173, 186, 199));
         jLabel1.setText("Formulario de materia");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jLNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLNombre.setForeground(new java.awt.Color(173, 186, 199));
         jLNombre.setText("Nombre");
-        jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 200, 30));
+        jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 200, 30));
 
         jLPeriodo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLPeriodo.setForeground(new java.awt.Color(173, 186, 199));
         jLPeriodo.setText("Periodo");
-        jPanel1.add(jLPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 200, 30));
+        jPanel1.add(jLPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 200, 30));
 
         jLIdMateria.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLIdMateria.setForeground(new java.awt.Color(173, 186, 199));
         jLIdMateria.setText("Id Materia");
-        jPanel1.add(jLIdMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 200, 30));
+        jPanel1.add(jLIdMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 200, 30));
 
         jTFIdMateria.setBackground(new java.awt.Color(34, 39, 46));
         jTFIdMateria.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -89,14 +93,14 @@ public class friMaterias extends javax.swing.JInternalFrame {
                 jTFIdMateriaActionPerformed(evt);
             }
         });
-        jPanel1.add(jTFIdMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 100, 30));
+        jPanel1.add(jTFIdMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 200, 30));
 
         ckbEstado.setBackground(new java.awt.Color(34, 39, 46));
         ckbEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ckbEstado.setForeground(new java.awt.Color(173, 186, 199));
         ckbEstado.setText("Activo");
         ckbEstado.setContentAreaFilled(false);
-        jPanel1.add(ckbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 200, 30));
+        jPanel1.add(ckbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 200, 30));
 
         btLimpiar.setBackground(new java.awt.Color(34, 39, 46));
         btLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -109,7 +113,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
                 btLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(btLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 100, 30));
+        jPanel1.add(btLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 100, 30));
 
         btGuardar.setBackground(new java.awt.Color(34, 39, 46));
         btGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -122,18 +126,18 @@ public class friMaterias extends javax.swing.JInternalFrame {
                 btGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 100, 30));
+        jPanel1.add(btGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 100, 30));
 
         cbPeriodo.setBackground(new java.awt.Color(34, 39, 46));
         cbPeriodo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cbPeriodo.setForeground(new java.awt.Color(173, 186, 199));
         cbPeriodo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
-        jPanel1.add(cbPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 70, 30));
+        jPanel1.add(cbPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 200, 30));
 
         jLEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLEstado.setForeground(new java.awt.Color(173, 186, 199));
         jLEstado.setText("Estado");
-        jPanel1.add(jLEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 200, 30));
+        jPanel1.add(jLEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 200, 30));
 
         jTFNombre.setBackground(new java.awt.Color(34, 39, 46));
         jTFNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -144,7 +148,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
                 jTFNombreFocusLost(evt);
             }
         });
-        jPanel1.add(jTFNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 200, 30));
+        jPanel1.add(jTFNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 200, 30));
 
         btSalir.setBackground(new java.awt.Color(34, 39, 46));
         btSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -157,7 +161,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
                 btSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, 100, 30));
+        jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, 100, 30));
 
         btBorrar.setBackground(new java.awt.Color(34, 39, 46));
         btBorrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -171,7 +175,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
                 btBorrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 100, 30));
+        jPanel1.add(btBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 100, 30));
 
         btActualizar.setBackground(new java.awt.Color(34, 39, 46));
         btActualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -185,7 +189,7 @@ public class friMaterias extends javax.swing.JInternalFrame {
                 btActualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 100, 30));
+        jPanel1.add(btActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 100, 30));
 
         btBuscar.setBackground(new java.awt.Color(34, 39, 46));
         btBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -198,13 +202,13 @@ public class friMaterias extends javax.swing.JInternalFrame {
                 btBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 100, 30));
+        jPanel1.add(btBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,42 +227,29 @@ public class friMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-     //   MiConexion con= new MiConexion("jdbc:mysql://localhost/universidad","root","");
-       // Materia mat= new Materia();
-       // MateriaData mD= new MateriaData(con);
         try {
-            Integer id= Integer.parseInt(jTFIdMateria.getText());
-            mat=mD.obtenerMateria(id);
-                jTFNombre.setText(mat.getNombre());
-                cbPeriodo.setSelectedIndex(mat.getPeriodo()-1);
-                cbPeriodo.setEnabled(true);
-                if (mat.getEstado()!=0){
+            Integer id = Integer.parseInt(jTFIdMateria.getText());
+            mat = materiaData.obtenerMateria(id);
+            jTFNombre.setText(mat.getNombre());
+            cbPeriodo.setSelectedIndex(mat.getPeriodo() - 1);
+            cbPeriodo.setEnabled(true);
+            if (mat.getEstado() != 0) {
                 ckbEstado.setSelected(true);
                 btActualizar.setEnabled(true);
                 btBorrar.setEnabled(true);
                 jTFIdMateria.setEnabled(false);
                 ckbEstado.setEnabled(false);
-                }               
-        } catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "No es un ID valido, Ingrese numeros.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "No es un ID valido, Ingrese números.");
             limpiarCampos();
-        } catch(NullPointerException ex){
+        } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(this, "No existe una materia con ese ID.");
             limpiarCampos();
         }
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void jTFNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNombreFocusLost
-        String val="[\\s[a-zA-Z]+]*";
-        String val2="[\\s]*";
-        if(jTFNombre.getText().matches(val2)){
-        JOptionPane.showMessageDialog(this, "No es un nombre valido, use solo letras.");
-            jTFNombre.requestFocus();
-    }
-        if (!jTFNombre.getText().matches(val)){
-            JOptionPane.showMessageDialog(this, "No es un nombre valido, use solo letras.");
-            jTFNombre.requestFocus();
-        }
     }//GEN-LAST:event_jTFNombreFocusLost
 
     private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
@@ -266,45 +257,43 @@ public class friMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btLimpiarActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-        
-        int est=0;
+        if (jTFNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Error al intentar cargar la materia. Complete los datos obligatorios.");
+            return;
+        }
+        int est = 0;
         mat.setNombre(jTFNombre.getText());
-        mat.setPeriodo(cbPeriodo.getSelectedIndex()+1);
-        if (ckbEstado.isSelected()){
-            est=1;
+        mat.setPeriodo(cbPeriodo.getSelectedIndex() + 1);
+        if (ckbEstado.isSelected()) {
+            est = 1;
         }
         mat.setEstado(est);
-        try{
-            mD.guardarMateria(mat);
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(this, "No se pudo guardar la materia.");
-        }
-        
-        
+        materiaData.guardarMateria(mat);
+        limpiarCampos();
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
-      
-       mat.setNombre(jTFNombre.getText());
-       mat.setPeriodo(cbPeriodo.getSelectedIndex()+1);
-       mat.setIdMateria(Integer.parseInt(jTFIdMateria.getText()));
-       
-       mD.actualizarMateria(mat);
-      
+        mat.setNombre(jTFNombre.getText());
+        mat.setPeriodo(cbPeriodo.getSelectedIndex() + 1);
+        mat.setIdMateria(Integer.parseInt(jTFIdMateria.getText()));
+        materiaData.actualizarMateria(mat);
+        limpiarCampos();
     }//GEN-LAST:event_btActualizarActionPerformed
 
     private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
-       
         int id;
-        id=Integer.parseInt(jTFIdMateria.getText());
-        mD.eliminarMateria(id);
+        id = Integer.parseInt(jTFIdMateria.getText());
+        materiaData.eliminarMateria(id);
+        limpiarCampos();
     }//GEN-LAST:event_btBorrarActionPerformed
-    private void llenarComboBox(){
+    
+    private void llenarComboBox() {
         cbPeriodo.addItem(1);
         cbPeriodo.addItem(2);
         cbPeriodo.addItem(3);
     }
-    private void limpiarCampos(){
+
+    private void limpiarCampos() {
         jTFNombre.setText("");
         cbPeriodo.setSelectedIndex(0);
         ckbEstado.setSelected(false);

@@ -51,15 +51,17 @@ public class friAlumnos extends javax.swing.JInternalFrame {
         btLimpiar = new javax.swing.JButton();
         btActualizar = new javax.swing.JButton();
         jdcFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        btSalir = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(34, 39, 46));
         setClosable(true);
-        setMinimumSize(new java.awt.Dimension(600, 450));
-        setPreferredSize(new java.awt.Dimension(600, 450));
+        setMinimumSize(new java.awt.Dimension(640, 480));
+        setPreferredSize(new java.awt.Dimension(640, 480));
 
         jPanel1.setBackground(new java.awt.Color(34, 39, 46));
         jPanel1.setForeground(new java.awt.Color(173, 186, 199));
-        jPanel1.setMinimumSize(new java.awt.Dimension(600, 450));
-        jPanel1.setPreferredSize(new java.awt.Dimension(600, 450));
+        jPanel1.setMinimumSize(new java.awt.Dimension(640, 480));
+        jPanel1.setPreferredSize(new java.awt.Dimension(640, 480));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -118,9 +120,9 @@ public class friAlumnos extends javax.swing.JInternalFrame {
         ckEstado.setBackground(new java.awt.Color(34, 39, 46));
         ckEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ckEstado.setForeground(new java.awt.Color(173, 186, 199));
+        ckEstado.setSelected(true);
         ckEstado.setText("Activo");
         ckEstado.setContentAreaFilled(false);
-        ckEstado.setEnabled(false);
         jPanel1.add(ckEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 80, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -153,12 +155,12 @@ public class friAlumnos extends javax.swing.JInternalFrame {
                 btBorrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 100, 30));
+        jPanel1.add(btBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 100, 30));
 
         lbEstado1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbEstado1.setForeground(new java.awt.Color(173, 186, 199));
         lbEstado1.setText("Estado");
-        jPanel1.add(lbEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 140, 30));
+        jPanel1.add(lbEstado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 200, 30));
 
         btGuardar.setBackground(new java.awt.Color(34, 39, 46));
         btGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -171,7 +173,7 @@ public class friAlumnos extends javax.swing.JInternalFrame {
                 btGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 100, 30));
+        jPanel1.add(btGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 100, 30));
 
         btLimpiar.setBackground(new java.awt.Color(34, 39, 46));
         btLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -184,7 +186,7 @@ public class friAlumnos extends javax.swing.JInternalFrame {
                 btLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(btLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 100, 30));
+        jPanel1.add(btLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 100, 30));
 
         btActualizar.setBackground(new java.awt.Color(34, 39, 46));
         btActualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -198,98 +200,112 @@ public class friAlumnos extends javax.swing.JInternalFrame {
                 btActualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 100, 30));
-        jPanel1.add(jdcFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 120, 30));
+        jPanel1.add(btActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 100, 30));
+
+        jdcFechaNacimiento.setBackground(new java.awt.Color(34, 39, 46));
+        jdcFechaNacimiento.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(173, 186, 199)));
+        jdcFechaNacimiento.setForeground(new java.awt.Color(173, 186, 199));
+        jdcFechaNacimiento.setToolTipText("");
+        jdcFechaNacimiento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(jdcFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 200, 30));
+
+        btSalir.setBackground(new java.awt.Color(34, 39, 46));
+        btSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btSalir.setForeground(new java.awt.Color(173, 186, 199));
+        btSalir.setText("Salir");
+        btSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btSalir.setContentAreaFilled(false);
+        btSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-        
-        Alumno al= new Alumno();
-        AlumnoData aD= new AlumnoData();
-        String dniBuscar=jTFDni.getText();
-        al=aD.obtenerAlumnoXDni(dniBuscar);
-        if (al!=null&&al.getEstado()!=0){
+        Alumno al;
+        AlumnoData aD = new AlumnoData();
+        String dniBuscar = jTFDni.getText();
+        al = aD.obtenerAlumnoXDni(dniBuscar);
+        if (al != null && al.getEstado() != 0) {
             jTFNombre.setText(al.getNombre());
             jTFApellido.setText(al.getApellido());
             jTFDni.setText(al.getDni());
             LocalDate lc = al.getFechaNacimiento();
-           Date date = (Date) Date.valueOf(lc);
+            Date date = (Date) Date.valueOf(lc);
             jdcFechaNacimiento.setDate(date);
             ckEstado.setEnabled(false);
-            ckEstado.setSelected(al.getEstado()==1);
+            ckEstado.setSelected(al.getEstado() == 1);
             btActualizar.setEnabled(true);
-            btBorrar.setEnabled(true);  
+            btBorrar.setEnabled(true);
         } else {
-            JOptionPane.showMessageDialog(this, "No existe un alumno con ese dni.");
+            JOptionPane.showMessageDialog(this, "No existe un alumno con ese DNI.");
         }
-        
-        
-        
     }//GEN-LAST:event_btBuscarActionPerformed
 
     private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
-        Alumno al= new Alumno();
-        AlumnoData aD= new AlumnoData();
+        Alumno al;
+        AlumnoData aD = new AlumnoData();
         aD.eliminarAlumno(aD.obtenerAlumnoXDni(jTFDni.getText()).getIdAlumno());
-        al=aD.obtenerAlumno(aD.obtenerAlumnoXDni(jTFDni.getText()).getIdAlumno());
-        if (al.getEstado()==0){
-            JOptionPane.showMessageDialog(this, "Se borro con exito.");
-        }else{
-            JOptionPane.showMessageDialog(this, "no fue borrado.");
-        }
+        al = aD.obtenerAlumno(aD.obtenerAlumnoXDni(jTFDni.getText()).getIdAlumno());
+        limpiarCampos();
     }//GEN-LAST:event_btBorrarActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-         Alumno al= new Alumno();
-        AlumnoData aD= new AlumnoData();
+        if( jTFNombre.getText().isEmpty() || jTFApellido.getText().isEmpty() || jTFDni.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(this, "Error al intentar cargar el alumno. Complete los datos obligatorios.");
+            return;
+        }
+        Alumno al = new Alumno();
+        AlumnoData aD = new AlumnoData();
         java.util.Date sfecha = jdcFechaNacimiento.getDate();
         LocalDate fechaNac = sfecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         al.setFechaNacimiento(fechaNac);
         al.setNombre(jTFNombre.getText());
         al.setApellido(jTFApellido.getText());
-        al.setDni(jTFDni.getText()); 
+        al.setDni(jTFDni.getText());
         aD.guardarAlumno(al);
-        
+        limpiarCampos();
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void jTFApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFApellidoFocusLost
-        String val="[\\s[a-zA-Z]+]*";
-        String val2="[\\s]*";
-        if (jTFApellido.getText().matches(val2)){
-            JOptionPane.showMessageDialog(this, "No es un dato Valido para apellido.");
-            jTFApellido.requestFocus();
+        String val = "[\\s[a-zA-Z]+]*";
+        String val2 = "[\\s]*";
+        if (!jTFApellido.getText().isEmpty()) {
+            if (jTFApellido.getText().matches(val2)) {
+                JOptionPane.showMessageDialog(this, "No es un dato válido para apellido.");
+                jTFApellido.requestFocus();
+            }
+            if (!jTFApellido.getText().matches(val)) {
+                JOptionPane.showMessageDialog(this, "No es un dato válido para apellido.");
+                jTFApellido.requestFocus();
+            }
         }
-        if (!jTFApellido.getText().matches(val)){
-            JOptionPane.showMessageDialog(this, "No es un dato Valido para apellido.");
-            jTFApellido.requestFocus();
-        }        
     }//GEN-LAST:event_jTFApellidoFocusLost
 
     private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
-        Limpiar();
-        jTFApellido.setText("");
-        
-        
+        limpiarCampos();
     }//GEN-LAST:event_btLimpiarActionPerformed
 
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
-        AlumnoData aD= new AlumnoData();
-        Alumno al= new Alumno();
+        AlumnoData aD = new AlumnoData();
+        Alumno al = new Alumno();
         al.setIdAlumno(aD.obtenerAlumnoXDni(jTFDni.getText()).getIdAlumno());
         al.setNombre(jTFNombre.getText());
         al.setApellido(jTFApellido.getText());
@@ -299,32 +315,38 @@ public class friAlumnos extends javax.swing.JInternalFrame {
         al.setFechaNacimiento(fechaNac);
         aD.actualizarAlumno(al);
         ckEstado.setEnabled(false);
-        
+        limpiarCampos();
     }//GEN-LAST:event_btActualizarActionPerformed
 
     private void jTFNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFNombreFocusLost
-         String val="[\\s[a-zA-Z]+]*";
-        String val2="[\\s]*";
-        if(jTFNombre.getText().matches(val2)){
-            JOptionPane.showMessageDialog(this,"No es un dato valido para nombre.");
-            jTFNombre.requestFocus();
-        
-        }
-        if(!jTFNombre.getText().matches(val)){
-            JOptionPane.showMessageDialog(this,"No es un dato valido para nombre.");
-            jTFNombre.requestFocus();
-        
+        String val = "[\\s[a-zA-Z]+]*";
+        String val2 = "[\\s]*";
+        if (!jTFNombre.getText().isEmpty()) {
+            if (jTFNombre.getText().matches(val2)) {
+                JOptionPane.showMessageDialog(this, "No es un dato valido para nombre.");
+                jTFNombre.requestFocus();
+            }
+            if (!jTFNombre.getText().matches(val)) {
+                JOptionPane.showMessageDialog(this, "No es un dato valido para nombre.");
+                jTFNombre.requestFocus();
+            }
         }
     }//GEN-LAST:event_jTFNombreFocusLost
 
     private void jTFDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFDniFocusLost
-          String val="[0-9]*";
-        if(!jTFDni.getText().matches(val)){
-            JOptionPane.showMessageDialog(this, "No es un dato valido para DNI.");
-            jTFDni.requestFocus();
+        String val = "[0-9]*";
+        if (!jTFDni.getText().isEmpty()) {
+            if (!jTFDni.getText().matches(val)) {
+                JOptionPane.showMessageDialog(this, "No es un dato valido para DNI.");
+                jTFDni.requestFocus();
+            }
         }
     }//GEN-LAST:event_jTFDniFocusLost
-    private void Limpiar(){
+
+    private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btSalirActionPerformed
+    private void limpiarCampos() {
         jTFApellido.setText("");
         jTFNombre.setText("");
         jTFDni.setText("");
@@ -338,6 +360,7 @@ public class friAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btBuscar;
     private javax.swing.JButton btGuardar;
     private javax.swing.JButton btLimpiar;
+    private javax.swing.JButton btSalir;
     private javax.swing.JCheckBox ckEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

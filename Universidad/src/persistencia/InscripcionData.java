@@ -85,7 +85,11 @@ public class InscripcionData {
             PreparedStatement ps = conn.prepareStatement(q);
             ps.setInt(1, a.getIdAlumno());
             ps.setInt(2, m.getIdMateria());
-            ps.executeUpdate();
+            if( ps.executeUpdate() > 0 ){
+                JOptionPane.showMessageDialog(null, "Inscripción eliminada exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "La inscripción no pudo ser eliminada.");
+            }
             ps.close();
         } catch(SQLException ex) {
             //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);
@@ -100,7 +104,11 @@ public class InscripcionData {
             ps.setFloat(1, nota);
             ps.setInt(2, a.getIdAlumno());
             ps.setInt(3, m.getIdMateria());
-            ps.executeUpdate();
+            if( ps.executeUpdate() > 0 ){
+                JOptionPane.showMessageDialog(null, "Nota actualizada exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "La nota no pudo ser actualizada.");
+            }
             ps.close();
         } catch(SQLException ex) {
             //Logger.getLogger(AlumnoData.class).log(Level.SEVERE, null, ex);

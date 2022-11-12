@@ -34,15 +34,19 @@ public class MateriaData {
             ps.setString(1, m.getNombre());
             ps.setInt(2, m.getPeriodo());
             ps.setInt(3, m.getEstado());
-            ps.execute();
+            if (ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Materia agregada exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "La materia no pudo ser agregada.");
+            }
             ResultSet rs = ps.getGeneratedKeys();
             if(rs.next()){
                 m.setIdMateria(rs.getInt(1));
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo obtener el ID1.");
+                JOptionPane.showMessageDialog(null, "No se pudo obtener el ID.");
             }
+            rs.close();
             ps.close();
-            
         } catch(SQLException ex) {
             //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
            JOptionPane.showMessageDialog(null, ex);
@@ -104,9 +108,12 @@ public class MateriaData {
             ps.setString(1, m.getNombre());
             ps.setInt(2, m.getPeriodo());
             ps.setInt(3, m.getIdMateria());
-            ps.executeUpdate();
+            if (ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Materia actualizada exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "La materia no pudo ser actualizada.");
+            }
             ps.close();
-            
         } catch(SQLException ex) {
             //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Ocurrio un error SQL en actualizarMateria.");
@@ -119,7 +126,11 @@ public class MateriaData {
         try{
             PreparedStatement ps = conn.prepareStatement(q);
             ps.setInt(1, id);
-            ps.executeUpdate();
+            if (ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Materia eliminada exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "La materia no pudo ser eliminada.");
+            }
             ps.close();
         } catch(SQLException ex) {
             //Logger.getLogger(MateriaData.class).log(Level.SEVERE, null, ex);
