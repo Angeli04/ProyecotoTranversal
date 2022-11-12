@@ -80,12 +80,12 @@ public class friNotas extends javax.swing.JInternalFrame {
         lbTitulo1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbTitulo1.setForeground(new java.awt.Color(173, 186, 199));
         lbTitulo1.setText("Formulario de notas");
-        jPanel1.add(lbTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        jPanel1.add(lbTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         lbMateria.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbMateria.setForeground(new java.awt.Color(173, 186, 199));
         lbMateria.setText("Materia");
-        jPanel1.add(lbMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 200, 30));
+        jPanel1.add(lbMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 200, 30));
 
         cbMaterias.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cbMaterias.setForeground(new java.awt.Color(173, 186, 199));
@@ -111,7 +111,7 @@ public class friNotas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tbMaterias);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 700, 280));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 690, 280));
 
         btnGuardar.setBackground(new java.awt.Color(34, 39, 46));
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -124,7 +124,7 @@ public class friNotas extends javax.swing.JInternalFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 430, 110, 30));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 110, 30));
 
         btnSalir1.setBackground(new java.awt.Color(34, 39, 46));
         btnSalir1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -137,7 +137,7 @@ public class friNotas extends javax.swing.JInternalFrame {
                 btnSalir1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(593, 431, 110, 30));
+        jPanel1.add(btnSalir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 430, 110, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
