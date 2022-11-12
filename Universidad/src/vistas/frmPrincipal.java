@@ -5,7 +5,6 @@
  */
 package vistas;
 
-
 /**
  *
  * @author PUESTO-A1
@@ -17,7 +16,7 @@ public class frmPrincipal extends javax.swing.JFrame {
      */
     public frmPrincipal() {
         initComponents();
-       
+
     }
 
     /**
@@ -150,15 +149,15 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void jmAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAlumnoActionPerformed
         dpPrincipal.removeAll();
         dpPrincipal.repaint();
-        friAlumnos ventAlumno= new friAlumnos();
-       dpPrincipal.add(ventAlumno);
-       ventAlumno.setVisible(true);
+        friAlumnos ventAlumno = new friAlumnos();
+        dpPrincipal.add(ventAlumno);
+        ventAlumno.setVisible(true);
     }//GEN-LAST:event_jmAlumnoActionPerformed
 
     private void jmMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMateriaActionPerformed
         dpPrincipal.removeAll();
         dpPrincipal.repaint();
-        friMaterias ventMateria= new friMaterias();
+        friMaterias ventMateria = new friMaterias();
         dpPrincipal.add(ventMateria);
         ventMateria.setVisible(true);
     }//GEN-LAST:event_jmMateriaActionPerformed
@@ -166,7 +165,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void jMIInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIInscripcionesActionPerformed
         dpPrincipal.removeAll();
         dpPrincipal.repaint();
-        friInscripciones ventInsc= new friInscripciones();
+        friInscripciones ventInsc = new friInscripciones();
         dpPrincipal.add(ventInsc);
         ventInsc.setVisible(true);
     }//GEN-LAST:event_jMIInscripcionesActionPerformed
@@ -174,18 +173,18 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void jMconsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMconsultasActionPerformed
         dpPrincipal.removeAll();
         dpPrincipal.repaint();
-       friConsultas consulta= new friConsultas();
-       dpPrincipal.add(consulta);
-      consulta.setVisible(true);
-   
+        friConsultas consulta = new friConsultas();
+        dpPrincipal.add(consulta);
+        consulta.setVisible(true);
+
     }//GEN-LAST:event_jMconsultasActionPerformed
 
     private void jMICargarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICargarNotasActionPerformed
-       dpPrincipal.removeAll();
+        dpPrincipal.removeAll();
         dpPrincipal.repaint();
-       friNotas ventNota= new friNotas();
-       dpPrincipal.add(ventNota);
-      ventNota.setVisible(true);
+        friNotas ventNota = new friNotas();
+        dpPrincipal.add(ventNota);
+        ventNota.setVisible(true);
     }//GEN-LAST:event_jMICargarNotasActionPerformed
 
     /**
@@ -209,9 +208,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        friAlumnos vent= new friAlumnos();
+        friAlumnos vent = new friAlumnos();
         vent.setVisible(true);
-        frmPrincipal vent1= new frmPrincipal();
+        frmPrincipal vent1 = new frmPrincipal();
         vent1.setVisible(true);
     }
 
